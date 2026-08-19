@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release mobile AQ"
+  short_description: "Fiabilise builds, stores, OTA et rollbacks Expo"
+  default_prompt: "Utilise $aq-release-mobile pour cadrer et mettre en place cette partie du projet."

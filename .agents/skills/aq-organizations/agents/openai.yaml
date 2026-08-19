@@ -1,0 +1,4 @@
+interface:
+  display_name: "Organisations AQ"
+  short_description: "Sécurise équipes, rôles et invitations"
+  default_prompt: "Utilise $aq-organizations pour concevoir et implémenter les équipes, rôles et invitations de ce produit."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Configuration design AQ"
+  short_description: "Configure le design web et mobile"
+  default_prompt: "Utilise $aq-design-setup pour installer et initialiser les outils design adaptés à ce projet."

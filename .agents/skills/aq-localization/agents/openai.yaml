@@ -1,0 +1,4 @@
+interface:
+  display_name: "Localisation AQ"
+  short_description: "Conçoit traductions, formats et contenus multilingues"
+  default_prompt: "Utilise $aq-localization pour cadrer et mettre en place cette partie du projet."

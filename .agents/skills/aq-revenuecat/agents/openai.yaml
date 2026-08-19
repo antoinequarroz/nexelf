@@ -1,0 +1,4 @@
+interface:
+  display_name: "RevenueCat AQ"
+  short_description: "Configure les achats intégrés mobiles"
+  default_prompt: "Utilise $aq-revenuecat pour configurer et tester la monétisation RevenueCat de cette app."

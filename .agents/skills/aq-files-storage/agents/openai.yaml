@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stockage de fichiers AQ"
+  short_description: "Sécurise uploads, accès, quotas et cycle de vie"
+  default_prompt: "Utilise $aq-files-storage pour cadrer et mettre en place le stockage de fichiers de ce projet."

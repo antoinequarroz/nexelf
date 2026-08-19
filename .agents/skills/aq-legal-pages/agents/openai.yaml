@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pages légales AQ"
+  short_description: "Prépare et intègre les textes légaux du projet"
+  default_prompt: "Utilise $aq-legal-pages pour cadrer, rédiger et intégrer les pages légales de ce projet."

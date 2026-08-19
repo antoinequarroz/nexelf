@@ -1,0 +1,6 @@
+# pnpm 11 bloque les scripts de build natifs par défaut.
+# Ils s'autorisent ICI, pas dans package.json.
+allowBuilds:
+  '@sentry/cli': true
+  esbuild: false
+  unrs-resolver: true

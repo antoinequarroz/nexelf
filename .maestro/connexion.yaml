@@ -1,0 +1,13 @@
+appId: ch.antoinequarroz.aqmobile
+---
+- launchApp:
+    clearState: true
+- tapOn: 'Se connecter'
+- tapOn:
+    id: 'champ-email'
+- inputText: 'test@exemple.ch'
+- tapOn:
+    id: 'champ-motdepasse'
+- inputText: 'motdepasse-de-test'
+- tapOn: 'Se connecter'
+- assertVisible: 'Bienvenue'

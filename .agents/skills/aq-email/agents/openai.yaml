@@ -1,0 +1,4 @@
+interface:
+  display_name: "Email AQ"
+  short_description: "Configure des emails fiables et délivrables"
+  default_prompt: "Utilise $aq-email pour concevoir, configurer et valider les emails de ce projet."

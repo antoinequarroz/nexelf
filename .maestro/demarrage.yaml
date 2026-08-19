@@ -1,0 +1,7 @@
+# Maestro, pas Playwright : Playwright ne pilote pas une app native.
+# Trois tests fondateurs, pas trente.
+appId: ch.antoinequarroz.aqmobile
+---
+- launchApp:
+    clearState: true
+- assertVisible: 'Bienvenue'

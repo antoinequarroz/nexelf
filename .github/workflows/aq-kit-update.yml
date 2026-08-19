@@ -1,0 +1,65 @@
+name: Mise à jour des skills AQ
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 5 * * 1'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: aq-kit-update
+  cancel-in-progress: false
+
+jobs:
+  synchroniser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le projet
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Récupérer aq-kit
+        uses: actions/checkout@v4
+        with:
+          repository: antoinequarroz/aq-kit
+          path: .aq-kit-source
+          ssh-key: ${{ secrets.AQ_KIT_DEPLOY_KEY }}
+
+      - name: Synchroniser les skills
+        run: >-
+          node .aq-kit-source/scripts/sync.mjs
+          --target .
+          --profile mobile
+
+      - name: Retirer la source temporaire
+        run: rm -rf .aq-kit-source
+
+      - name: Préparer la mise à jour
+        id: changes
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C chore/aq-kit-update
+          git add .agents .claude CLAUDE.md .github/workflows/aq-kit-update.yml
+          git commit -m "chore: synchronise les skills AQ"
+          git push --force-with-lease origin chore/aq-kit-update
+
+      - name: Ouvrir ou actualiser la pull request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr view chore/aq-kit-update >/dev/null 2>&1 || gh pr create \
+            --base "${{ github.event.repository.default_branch }}" \
+            --head chore/aq-kit-update \
+            --title "chore: mettre à jour les skills AQ" \
+            --body "Mise à jour automatique depuis la source de vérité aq-kit. Cette PR ne modifie que les skills, CLAUDE.md et son propre workflow."

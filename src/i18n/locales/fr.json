@@ -1,0 +1,36 @@
+{
+  "app": { "nom": "AQ Mobile" },
+  "accueil": {
+    "titre": "Bienvenue",
+    "lead": "Base mobile du kit AQ. Expo, Convex, Better Auth, RevenueCat."
+  },
+  "etats": {
+    "chargement": "Chargement…",
+    "vide": {
+      "titre": "Rien pour l'instant",
+      "corps": "Vos éléments apparaîtront ici dès que vous en aurez créé un."
+    },
+    "erreur": {
+      "titre": "Quelque chose n'a pas fonctionné",
+      "corps": "Vérifiez votre connexion, puis réessayez.",
+      "reessayer": "Réessayer"
+    },
+    "horsLigne": {
+      "titre": "Pas de connexion",
+      "corps": "Les données affichées peuvent ne pas être à jour."
+    }
+  },
+  "auth": {
+    "connexion": "Connexion",
+    "seConnecter": "Se connecter",
+    "seDeconnecter": "Se déconnecter",
+    "email": "Adresse e-mail",
+    "motdepasse": "Mot de passe",
+    "supprimerCompte": "Supprimer mon compte"
+  },
+  "abonnement": {
+    "titre": "Abonnement",
+    "gerer": "Gérer mon abonnement",
+    "restaurer": "Restaurer mes achats"
+  }
+}

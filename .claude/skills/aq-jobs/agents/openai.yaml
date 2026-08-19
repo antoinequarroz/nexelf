@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jobs asynchrones AQ"
+  short_description: "Fiabilise cron, files, retries et traitements longs"
+  default_prompt: "Utilise $aq-jobs pour cadrer et mettre en place les tâches asynchrones et planifiées de ce projet."

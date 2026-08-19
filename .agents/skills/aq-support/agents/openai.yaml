@@ -1,0 +1,4 @@
+interface:
+  display_name: "Support client AQ"
+  short_description: "Conçoit le support, les tickets et le centre d’aide"
+  default_prompt: "Utilise $aq-support pour cadrer et mettre en place le support client de ce projet."

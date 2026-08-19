@@ -1,0 +1,4 @@
+interface:
+  display_name: "Import et export AQ"
+  short_description: "Sécurise imports, exports et portabilité des données"
+  default_prompt: "Utilise $aq-import-export pour cadrer et mettre en place cette partie du projet."

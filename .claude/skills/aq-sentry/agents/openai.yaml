@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sentry AQ"
+  short_description: "Configure un monitoring vérifié et sobre"
+  default_prompt: "Utilise $aq-sentry pour installer, sécuriser et valider le monitoring de ce projet."

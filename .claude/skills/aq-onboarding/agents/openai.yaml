@@ -1,0 +1,4 @@
+interface:
+  display_name: "Onboarding AQ"
+  short_description: "Conçoit un onboarding qui mène à la valeur"
+  default_prompt: "Utilise $aq-onboarding pour concevoir et valider le parcours d’onboarding de ce produit."

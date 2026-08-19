@@ -1,0 +1,4 @@
+interface:
+  display_name: "Domaine & DNS AQ"
+  short_description: "Sécurise domaine, DNS, SSL et migrations"
+  default_prompt: "Utilise $aq-domain-dns pour configurer ou migrer proprement le domaine et les DNS de ce projet."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintenance AQ"
+  short_description: "Contrôle, corrige et documente la santé du projet"
+  default_prompt: "Utilise $aq-maintenance pour exécuter la prochaine passe de maintenance et produire le rapport client."

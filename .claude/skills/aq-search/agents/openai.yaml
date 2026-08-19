@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recherche AQ"
+  short_description: "Conçoit une recherche rapide, sûre et pertinente"
+  default_prompt: "Utilise $aq-search pour cadrer et mettre en place cette partie du projet."

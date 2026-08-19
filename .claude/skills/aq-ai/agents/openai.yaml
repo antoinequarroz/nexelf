@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fonctionnalités IA AQ"
+  short_description: "Cadre UX, sécurité, qualité et coûts de l’IA"
+  default_prompt: "Utilise $aq-ai pour cadrer et mettre en place cette partie du projet."

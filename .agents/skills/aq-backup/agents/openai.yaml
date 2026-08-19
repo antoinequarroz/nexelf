@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backup AQ"
+  short_description: "Planifie et teste sauvegarde et restauration"
+  default_prompt: "Utilise $aq-backup pour définir, configurer et tester la reprise de ce projet."

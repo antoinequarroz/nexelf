@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accessibilité AQ"
+  short_description: "Audite et corrige l’accessibilité web et mobile"
+  default_prompt: "Utilise $aq-accessibility pour auditer, corriger et valider l’accessibilité de ce projet."

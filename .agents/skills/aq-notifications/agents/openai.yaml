@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notifications AQ"
+  short_description: "Conçoit les notifications web, email et mobile"
+  default_prompt: "Utilise $aq-notifications pour cadrer et mettre en place les notifications de ce projet."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stratégie tarifaire AQ"
+  short_description: "Conçoit des offres et tarifs cohérents"
+  default_prompt: "Utilise $aq-pricing pour concevoir les offres, prix et modalités de paiement de ce projet."

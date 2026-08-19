@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature flags AQ"
+  short_description: "Déploie progressivement avec des flags sûrs"
+  default_prompt: "Utilise $aq-feature-flags pour cadrer et mettre en place les feature flags de ce projet."
