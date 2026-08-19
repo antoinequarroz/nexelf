@@ -17,8 +17,8 @@ export const authClient = createAuthClient({
     // de typage en amont, sans effet à l'exécution. À retirer dès qu'elle est
     // corrigée — vérifier à chaque montée de version.
     expoClient({
-      scheme: 'aqmobile',
-      storagePrefix: 'aqmobile',
+      scheme: 'nexelf',
+      storagePrefix: 'nexelf',
       storage: SecureStore
     }) as never,
     convexClient()

@@ -1,44 +1,34 @@
-# 0001. Base mobile : Expo + Convex + Better Auth + RevenueCat
+# 0001. Base mobile Expo et backend Convex
 
-Date : 2026-08-07
+Date : 2026-08-19
 Statut : accepté
 
 ## Contexte
 
-App React Native distribuée sur les stores, avec comptes utilisateurs et
-abonnements. Backend potentiellement partagé avec une version web.
+Nexelf est un copilote personnel IA utilisé quotidiennement sur téléphone. Le produit demande des comptes, des données propres à chaque utilisateur, des notifications, un abonnement et, à terme, des intégrations natives. Le MVP ne traite pas de données sensibles au sens nLPD et n'impose pas de résidence suisse.
 
 ## Décision
 
-- Expo SDK 57 avec Expo Router, code dans `src/app/`
-- NativeWind pour les styles, tokens dans `tailwind.config.js`
-- Convex comme backend — **intégration officielle React, contrairement au web**
-- Better Auth via `@convex-dev/better-auth` + `@better-auth/expo`
-- RevenueCat pour les abonnements
-- Maestro pour les tests de bout en bout
+- Utiliser la base `mobile` AQ : Expo SDK 57, React Native, Expo Router et NativeWind.
+- Utiliser Convex pour les données et le backend temps réel.
+- Utiliser Better Auth avec Secure Store pour les comptes et sessions.
+- Utiliser RevenueCat pour Nexelf Pro ; aucun paiement numérique direct avec Stripe dans l'app.
+- Utiliser EAS pour les builds et la distribution iOS/Android.
+- Utiliser Maestro pour les tests de bout en bout.
+
+## Raisons
+
+L'usage principal est mobile et bénéficiera des notifications, des intégrations natives et d'une distribution sur les stores. Convex est officiellement intégré à React, convient au temps réel et ne contrevient à aucune contrainte de résidence retenue. EAS est la chaîne de build naturelle d'Expo.
 
 ## Alternatives écartées
 
-**Stripe dans l'app** — impossible : le contenu numérique passe obligatoirement
-par les achats in-app. RevenueCat gère les deux plateformes derrière une seule
-API.
-
-**Playwright** — ne pilote pas une app native.
-
-**Supabase** — possible, mais Convex donne un backend partagé avec le web sans
-duplication de logique. À reconsidérer si une résidence suisse est exigée :
-Convex est alors disqualifié.
+- Une application web seule ne répond pas à l'usage quotidien et contextuel visé.
+- Supabase reste une porte de sortie si les besoins deviennent fortement relationnels ou si une région de données spécifique devient obligatoire.
+- Stripe dans l'app est écarté pour les contenus numériques ; les achats intégrés passent par RevenueCat et les stores.
 
 ## Conséquences
 
-- Sur mobile, l'intégration Convex est **officielle et first-class**, à la
-  différence du web en Vue. C'est le point le plus solide de la stack AQ.
-- Les versions d'auth sont épinglées et strictement liées entre elles.
-- Un cast de type est nécessaire en attendant une correction en amont
-  (voir `AGENTS.md`).
-
-## Non vérifié
-
-Aucun build natif n'a été produit. Le typecheck passe hors codegen Convex,
-mais le comportement à l'exécution — auth, achats, permissions, hors ligne —
-n'a jamais tourné sur un appareil. Voir `README.md`.
+- La stratégie hors ligne, les permissions et les intégrations doivent être spécifiées avant le code métier.
+- Les versions Better Auth restent épinglées et évoluent ensemble.
+- La suppression de compte et la restauration des achats devront exister avant soumission aux stores.
+- Le compte Convex et les comptes Apple/Google restent au nom d'Antoine pour ce projet personnel.

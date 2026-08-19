@@ -6,6 +6,8 @@
   "dependencies": {
     "@better-auth/expo": "^1.6.26",
     "@convex-dev/better-auth": "^0.12.5",
+    "@expo-google-fonts/manrope": "^0.4.2",
+    "@expo-google-fonts/sora": "^0.4.2",
     "@expo/ui": "~57.0.9",
     "@sentry/react-native": "^8.22.0",
     "better-auth": "^1.6.26",
@@ -32,6 +34,7 @@
     "react-i18next": "^17.0.11",
     "react-native": "0.86.2",
     "react-native-css": "^3.0.7",
+    "react-native-css-interop": "0.2.6",
     "react-native-gesture-handler": "~2.32.0",
     "react-native-purchases": "^10.7.0",
     "react-native-reanimated": "4.5.1",

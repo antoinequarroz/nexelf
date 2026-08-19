@@ -1,11 +1,12 @@
-# AQ Mobile — base de démarrage
+# Nexelf — copilote personnel IA mobile
 
 > Source de vérité pour les agents. `CLAUDE.md` en est une copie.
 
 ## Ce que c'est
 
-Base `mobile` du kit AQ : React Native via Expo, backend Convex partagé avec
-une éventuelle version web, abonnements RevenueCat.
+Application mobile personnelle basée sur le socle AQ : React Native via Expo,
+backend Convex, comptes Better Auth et abonnements Nexelf Pro via RevenueCat.
+Direction visuelle : Quiet Command, documentée dans `docs/design.md`.
 
 ## Stack
 
@@ -36,7 +37,7 @@ Puis, dans l'environnement **Convex** :
 
 ```bash
 npx convex env set BETTER_AUTH_SECRET "$(openssl rand -base64 32)"
-npx convex env set SITE_URL aqmobile://
+npx convex env set SITE_URL nexelf://
 ```
 
 ## Versions épinglées — règle stricte

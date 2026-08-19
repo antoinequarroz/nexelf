@@ -1,0 +1,61 @@
+{
+  "app": { "nom": "Nexelf" },
+  "briefing": {
+    "date": "Tuesday, August 19",
+    "salutation": "Good morning, Antoine.",
+    "focusLabel": "Today's direction",
+    "progress": "Day 12",
+    "focus": "Move with intention, not pressure.",
+    "focusDetail": "Your plan protects what matters and leaves enough room for the unexpected.",
+    "priorities": "Today's priorities",
+    "items": {
+      "work": {
+        "title": "Focused work",
+        "detail": "09:00–12:00 · High priority"
+      },
+      "project": {
+        "title": "Personal project",
+        "detail": "45 min · After lunch"
+      },
+      "training": {
+        "title": "Training",
+        "detail": "18:30 · Moderate intensity"
+      },
+      "learning": {
+        "title": "Learning",
+        "detail": "15 min · Before your evening"
+      }
+    },
+    "adapt": "Adapt my day",
+    "control": "Nexelf suggests. You always have the final say."
+  },
+  "etats": {
+    "chargement": "Loading…",
+    "vide": {
+      "titre": "Nothing here yet",
+      "corps": "Your items will appear here once you create them."
+    },
+    "erreur": {
+      "titre": "Something went wrong",
+      "corps": "Check your connection and try again.",
+      "reessayer": "Try again"
+    },
+    "horsLigne": {
+      "titre": "No connection",
+      "corps": "The information shown may be outdated."
+    }
+  },
+  "auth": {
+    "connexion": "Sign in",
+    "seConnecter": "Sign in",
+    "seDeconnecter": "Sign out",
+    "email": "Email address",
+    "motdepasse": "Password",
+    "supprimerCompte": "Delete my account"
+  },
+  "abonnement": {
+    "titre": "Subscription",
+    "gerer": "Manage subscription",
+    "restaurer": "Restore purchases"
+  }
+}

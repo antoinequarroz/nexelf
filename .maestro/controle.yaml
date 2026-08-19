@@ -1,0 +1,5 @@
+appId: ch.antoinequarroz.nexelf
+---
+- launchApp:
+    clearState: true
+- assertVisible: 'Nexelf propose. Tu gardes toujours le dernier mot.'

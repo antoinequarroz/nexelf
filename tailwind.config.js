@@ -1,40 +1,32 @@
-/** Design tokens — source de vérité unique.
- *  Aucune valeur de couleur en dur dans un écran.
- *  Direction de démonstration : à remplacer à l'étape 2 de `init-project`. */
+/** Design tokens — Quiet Command / Next Lime. */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  presets: [require('nativewind/preset')],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
   theme: {
     extend: {
       colors: {
-        // Échelles nommées, pas de variables plates : c'est ce qui permet
-        // d'écrire `bg-encre-600` et de tout changer d'un seul endroit.
-        encre: {
-          50: '#f4f6f7',
-          100: '#e3e8ea',
-          300: '#a3b5bd',
-          500: '#587380',
-          600: '#4a5f6b',
-          800: '#3a454d',
-          950: '#1e262c'
-        },
-        craie: {
-          50: '#faf9f7',
-          100: '#f2f0eb',
-          300: '#d3cdc0',
-          500: '#948b78',
-          700: '#635c50',
-          950: '#23211d'
-        }
+        canvas: "#090B0F",
+        surface: "#11141A",
+        raised: "#181C23",
+        line: "#282D36",
+        ink: "#F5F7FA",
+        muted: "#A8AFBA",
+        subtle: "#707783",
+        lime: "#C7F36B",
+        "lime-pressed": "#A9D84F",
+        "lime-ink": "#172006",
+        danger: "#FF7A86",
       },
-      borderRadius: {
-        // Angles francs, cohérents avec le registre éditorial.
-        sm: 2,
-        DEFAULT: 3,
-        lg: 4
-      }
-    }
+      borderRadius: { sm: 10, DEFAULT: 14, lg: 18, xl: 24 },
+      fontFamily: {
+        display: ["Sora_600SemiBold"],
+        body: ["Manrope_400Regular"],
+        medium: ["Manrope_500Medium"],
+        semibold: ["Manrope_600SemiBold"],
+      },
+      letterSpacing: { calm: "-0.02em" },
+    },
   },
-  plugins: []
-}
+  plugins: [],
+};

@@ -43,6 +43,6 @@ export const createAuth = (ctx: GenericCtx<DataModel>) =>
     emailAndPassword: { enabled: true, requireEmailVerification: true },
     // Le schéma déclaré dans app.json : sert aux redirections OAuth
     // et au retour dans l'app après authentification.
-    trustedOrigins: ['aqmobile://'],
+    trustedOrigins: ['nexelf://'],
     plugins: [expo(), convex({ authConfig })]
   })

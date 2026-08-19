@@ -1,8 +1,15 @@
-// Miroir TypeScript des tokens de tailwind.config.js, pour les rares cas
-// où une valeur ne peut pas passer par une classe NativeWind
-// (barre de statut, écran de démarrage, options de navigation).
-// Si tu modifies l'un, modifie l'autre. Aucune autre valeur en dur ailleurs.
+// Miroir TypeScript des tokens NativeWind pour les API natives.
+// Aucune couleur en dur ailleurs dans l'application.
 export const theme = {
-  encre: { 100: '#e3e8ea', 500: '#587380', 600: '#4a5f6b', 950: '#1e262c' },
-  craie: { 50: '#faf9f7', 100: '#f2f0eb', 300: '#d3cdc0', 700: '#635c50' }
-} as const
+  background: "#090B0F",
+  surface: "#11141A",
+  surfaceRaised: "#181C23",
+  border: "#282D36",
+  text: "#F5F7FA",
+  textMuted: "#A8AFBA",
+  textSubtle: "#707783",
+  lime: "#C7F36B",
+  limePressed: "#A9D84F",
+  limeInk: "#172006",
+  danger: "#FF7A86",
+} as const;

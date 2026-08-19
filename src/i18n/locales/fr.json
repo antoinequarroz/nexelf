@@ -1,18 +1,43 @@
 {
-  "app": { "nom": "AQ Mobile" },
-  "accueil": {
-    "titre": "Bienvenue",
-    "lead": "Base mobile du kit AQ. Expo, Convex, Better Auth, RevenueCat."
+  "app": { "nom": "Nexelf" },
+  "briefing": {
+    "date": "Mardi 19 août",
+    "salutation": "Bonjour, Antoine.",
+    "focusLabel": "Cap du jour",
+    "progress": "Jour 12",
+    "focus": "Avance avec intention, pas avec pression.",
+    "focusDetail": "Ton planning protège l'essentiel et garde assez d'espace pour l'imprévu.",
+    "priorities": "Priorités du jour",
+    "items": {
+      "work": {
+        "title": "Travail concentré",
+        "detail": "09:00–12:00 · Priorité haute"
+      },
+      "project": {
+        "title": "Projet personnel",
+        "detail": "45 min · Après le déjeuner"
+      },
+      "training": {
+        "title": "Entraînement",
+        "detail": "18:30 · Intensité modérée"
+      },
+      "learning": {
+        "title": "Apprentissage",
+        "detail": "15 min · Avant la soirée"
+      }
+    },
+    "adapt": "Adapter ma journée",
+    "control": "Nexelf propose. Tu gardes toujours le dernier mot."
   },
   "etats": {
     "chargement": "Chargement…",
     "vide": {
       "titre": "Rien pour l'instant",
-      "corps": "Vos éléments apparaîtront ici dès que vous en aurez créé un."
+      "corps": "Tes éléments apparaîtront ici dès que tu en auras créé un."
     },
     "erreur": {
       "titre": "Quelque chose n'a pas fonctionné",
-      "corps": "Vérifiez votre connexion, puis réessayez.",
+      "corps": "Vérifie ta connexion, puis réessaie.",
       "reessayer": "Réessayer"
     },
     "horsLigne": {
