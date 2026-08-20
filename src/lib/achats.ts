@@ -1,33 +1,78 @@
-import Purchases, { LOG_LEVEL } from 'react-native-purchases'
-import { Platform } from 'react-native'
+import Purchases, {
+  LOG_LEVEL,
+  type PurchasesOffering,
+  type PurchasesPackage,
+} from "react-native-purchases";
+import { Linking, Platform } from "react-native";
+import { entitlementProActif } from "./achats-logic";
 
-// RevenueCat, pas Stripe.
-// Le contenu numérique passe OBLIGATOIREMENT par les achats in-app :
-// brancher Stripe dans une app fait rejeter la soumission.
+export { ENTITLEMENT_PRO } from "./achats-logic";
 
-export function initAchats(appUserId?: string) {
-  Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.DEBUG : LOG_LEVEL.ERROR)
+export type EtatAchats =
+  | { disponible: false; raison: "plateforme" | "cle_absente" }
+  | { disponible: true };
 
-  const apiKey = Platform.select({
+let configure = false;
+let utilisateurCourant: string | undefined;
+
+function clePublique() {
+  return Platform.select({
     ios: process.env.EXPO_PUBLIC_REVENUECAT_IOS,
-    android: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID
-  })
-  if (!apiKey) return
-
-  // Lier l'achat à l'identité applicative, pas à l'identifiant anonyme :
-  // c'est ce qui permet de retrouver l'abonnement sur un autre appareil,
-  // et de le partager avec une éventuelle version web.
-  Purchases.configure({ apiKey, appUserID: appUserId })
+    android: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID,
+  });
 }
 
-export async function estAbonne(): Promise<boolean> {
-  const infos = await Purchases.getCustomerInfo()
-  return Object.keys(infos.entitlements.active).length > 0
+/** Configure RevenueCat une seule fois, puis lie l'identité authentifiée. */
+export async function initialiserAchats(
+  appUserId?: string,
+): Promise<EtatAchats> {
+  if (Platform.OS !== "ios" && Platform.OS !== "android") {
+    return { disponible: false, raison: "plateforme" };
+  }
+
+  const apiKey = clePublique();
+  if (!apiKey) return { disponible: false, raison: "cle_absente" };
+
+  if (!configure) {
+    Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.DEBUG : LOG_LEVEL.ERROR);
+    Purchases.configure({ apiKey });
+    configure = true;
+  }
+
+  if (appUserId && appUserId !== utilisateurCourant) {
+    await Purchases.logIn(appUserId);
+    utilisateurCourant = appUserId;
+  }
+
+  return { disponible: true };
 }
 
-// Restauration des achats : OBLIGATOIRE chez Apple.
-// Une app sans ce bouton est rejetée.
+export async function deconnecterAchats() {
+  if (!configure || !utilisateurCourant) return;
+  await Purchases.logOut();
+  utilisateurCourant = undefined;
+}
+
+export async function chargerOffre(): Promise<PurchasesOffering | null> {
+  const offerings = await Purchases.getOfferings();
+  return offerings.current ?? null;
+}
+
+export async function acheterOffre(pack: PurchasesPackage): Promise<boolean> {
+  const { customerInfo } = await Purchases.purchasePackage(pack);
+  return entitlementProActif(customerInfo);
+}
+
+export async function estPro(): Promise<boolean> {
+  return entitlementProActif(await Purchases.getCustomerInfo());
+}
+
 export async function restaurerAchats(): Promise<boolean> {
-  const infos = await Purchases.restorePurchases()
-  return Object.keys(infos.entitlements.active).length > 0
+  return entitlementProActif(await Purchases.restorePurchases());
+}
+
+export async function ouvrirGestionAbonnement(): Promise<boolean> {
+  const infos = await Purchases.getCustomerInfo();
+  if (!infos.managementURL) return false;
+  return Linking.openURL(infos.managementURL).then(() => true);
 }

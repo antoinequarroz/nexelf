@@ -19,6 +19,8 @@ import type * as objectifs from "../objectifs.js";
 import type * as onboarding from "../onboarding.js";
 import type * as planning from "../planning.js";
 import type * as profils from "../profils.js";
+import type * as progression from "../progression.js";
+import type * as revenuecat from "../revenuecat.js";
 import type * as revues from "../revues.js";
 
 import type {
@@ -39,6 +41,8 @@ declare const fullApi: ApiFromModules<{
   onboarding: typeof onboarding;
   planning: typeof planning;
   profils: typeof profils;
+  progression: typeof progression;
+  revenuecat: typeof revenuecat;
   revues: typeof revues;
 }>;
 
