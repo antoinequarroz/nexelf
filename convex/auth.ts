@@ -30,14 +30,19 @@ export const authComponent = createClient<DataModel>(components.betterAuth, {
       onCreate: async (ctx, user) => {
         const compteId = await ctx.db.insert('comptes', {
           nom: user.name ?? user.email,
-          proprietaireId: user._id
+          proprietaireId: user._id,
+          creeLe: Date.now()
         })
         await ctx.db.insert('profils', {
           authId: user._id,
           compteId,
           nom: user.name ?? user.email,
-          role: 'editeur', // jamais admin par défaut
-          actif: true
+          role: 'utilisateur',
+          actif: true,
+          langue: 'fr',
+          fuseauHoraire: 'Europe/Zurich',
+          memoireActive: true,
+          creeLe: Date.now()
         })
       }
     }

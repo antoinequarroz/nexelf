@@ -9,8 +9,17 @@
  */
 
 import type * as auth from "../auth.js";
+import type * as copilote from "../copilote.js";
+import type * as habitudes from "../habitudes.js";
 import type * as http from "../http.js";
 import type * as lib from "../lib.js";
+import type * as memoire from "../memoire.js";
+import type * as notifications from "../notifications.js";
+import type * as objectifs from "../objectifs.js";
+import type * as onboarding from "../onboarding.js";
+import type * as planning from "../planning.js";
+import type * as profils from "../profils.js";
+import type * as revues from "../revues.js";
 
 import type {
   ApiFromModules,
@@ -20,8 +29,17 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  copilote: typeof copilote;
+  habitudes: typeof habitudes;
   http: typeof http;
   lib: typeof lib;
+  memoire: typeof memoire;
+  notifications: typeof notifications;
+  objectifs: typeof objectifs;
+  onboarding: typeof onboarding;
+  planning: typeof planning;
+  profils: typeof profils;
+  revues: typeof revues;
 }>;
 
 /**
