@@ -17,8 +17,9 @@
 | 11  | Comprendre sa progression hebdomadaire           | M      | 05, 08     |
 | 12  | Découvrir et restaurer Nexelf Pro                | M      | 01, 06     |
 | 13  | Obtenir de l'aide et signaler un problème        | M      | 01, 06     |
+| 14  | Donner une identité visuelle cohérente à Nexelf  | M      | 02, 05     |
 
-Total : 7 M, 6 L. L'accessibilité, le français/anglais, la sécurité, les états dégradés et l'observabilité sont transversaux.
+Total : 8 M, 6 L. L'accessibilité, le français/anglais, la sécurité, les états dégradés et l'observabilité sont transversaux.
 
 ## Ordre de construction
 
