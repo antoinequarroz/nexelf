@@ -1,6 +1,6 @@
 # 11 — Comprendre sa progression hebdomadaire
 
-Statut : à faire  
+Statut : fait — validation automatisée réussie, parcours Maestro à exécuter sur appareil  
 Taille : M  
 Dépend de : 05, 08
 

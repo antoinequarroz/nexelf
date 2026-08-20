@@ -22,6 +22,7 @@ import type * as profils from "../profils.js";
 import type * as progression from "../progression.js";
 import type * as revenuecat from "../revenuecat.js";
 import type * as revues from "../revues.js";
+import type * as support from "../support.js";
 
 import type {
   ApiFromModules,
@@ -44,6 +45,7 @@ declare const fullApi: ApiFromModules<{
   progression: typeof progression;
   revenuecat: typeof revenuecat;
   revues: typeof revues;
+  support: typeof support;
 }>;
 
 /**

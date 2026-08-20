@@ -1,6 +1,6 @@
 # 13 — Obtenir de l'aide et signaler un problème
 
-Statut : à faire  
+Statut : partiel — parcours livré, exploitation et canal de réponse à organiser  
 Taille : M  
 Dépend de : 01, 06
 
