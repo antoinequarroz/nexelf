@@ -25,7 +25,12 @@ export function Feedback({ title, message, tone = "neutral", loading = false, ac
   const role = tone === "danger" || tone === "warning" ? "alert" : undefined;
 
   return (
-    <View accessibilityRole={role} className={`${fill ? "flex-1 justify-center" : ""} rounded border p-5 ${toneClass}`}>
+    <View
+      accessibilityLiveRegion={loading || tone === "success" ? "polite" : undefined}
+      accessibilityRole={role}
+      accessibilityState={{ busy: loading }}
+      className={`${fill ? "flex-1 justify-center" : ""} rounded border p-5 ${toneClass}`}
+    >
       {loading ? <ActivityIndicator className="mb-3 self-start" color={theme.action} /> : null}
       {title ? <Text className="font-semibold text-lg text-ink">{title}</Text> : null}
       <Text className={`${title ? "mt-2" : ""} font-body text-sm leading-5 text-muted`}>{message}</Text>

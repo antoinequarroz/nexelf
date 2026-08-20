@@ -34,6 +34,7 @@ export function Button({ label, loadingLabel, loading = false, disabled = false,
 
   return (
     <Pressable
+      accessibilityLabel={shownLabel}
       accessibilityRole="button"
       accessibilityState={{ busy: loading, disabled: inactive }}
       className={`min-h-touch flex-row items-center justify-center rounded px-5 py-3 ${buttonStyles[variant]} ${inactive ? "opacity-50" : ""}`}

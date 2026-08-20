@@ -127,7 +127,7 @@ export default function Habitudes() {
                 <View className="mt-3 flex-row flex-wrap">
                   <Pressable
                     accessibilityRole="button"
-                    className="mr-4 min-h-11 justify-center"
+                    className="mr-4 min-h-touch justify-center"
                     onPress={() =>
                       occurrence({
                         habitudeId: habit._id,
@@ -140,7 +140,7 @@ export default function Habitudes() {
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
-                    className="mr-4 min-h-11 justify-center"
+                    className="mr-4 min-h-touch justify-center"
                     onPress={() =>
                       occurrence({
                         habitudeId: habit._id,
@@ -153,7 +153,7 @@ export default function Habitudes() {
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
-                    className="min-h-11 justify-center"
+                    className="min-h-touch justify-center"
                     onPress={() =>
                       occurrence({
                         habitudeId: habit._id,
@@ -170,7 +170,7 @@ export default function Habitudes() {
               <View className="mt-2 flex-row">
                 <Pressable
                   accessibilityRole="button"
-                  className="mr-5 min-h-11 justify-center"
+                  className="mr-5 min-h-touch justify-center"
                   onPress={() => {
                     setEditing(habit._id);
                     setName(habit.nom);
@@ -182,7 +182,7 @@ export default function Habitudes() {
                 </Pressable>
                 <Pressable
                   accessibilityRole="button"
-                  className="mr-5 min-h-11 justify-center"
+                  className="mr-5 min-h-touch justify-center"
                   onPress={() =>
                     status({
                       habitudeId: habit._id,
@@ -198,7 +198,7 @@ export default function Habitudes() {
                 </Pressable>
                 <Pressable
                   accessibilityRole="button"
-                  className="min-h-11 justify-center"
+                  className="min-h-touch justify-center"
                   onPress={() =>
                     status({ habitudeId: habit._id, statut: "archivee" })
                   }
@@ -223,9 +223,10 @@ export default function Habitudes() {
           {active.map((habit) => (
             <Pressable
               key={habit._id}
+              accessibilityLabel={habit.nom}
               accessibilityRole="checkbox"
               accessibilityState={{ checked: selected.includes(habit._id) }}
-              className="min-h-11 justify-center"
+              className="min-h-touch justify-center"
               onPress={() => toggleHabit(habit._id)}
             >
               <Text

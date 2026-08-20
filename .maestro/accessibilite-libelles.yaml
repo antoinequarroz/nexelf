@@ -1,0 +1,22 @@
+appId: ch.antoinequarroz.nexelf
+---
+- launchApp
+- runFlow:
+    when:
+      visible: "Connexion"
+    commands:
+      - assertVisible: "Adresse e-mail"
+      - assertVisible: "Mot de passe"
+      - assertVisible: "Se connecter"
+- runFlow:
+    when:
+      visible: "Aujourd’hui"
+    commands:
+      - tapOn: "Réglages"
+      - assertVisible: "Habitudes et routines"
+      - assertVisible: "Mémoire"
+      - assertVisible: "Notifications"
+      - tapOn: "Notifications"
+      - assertVisible: "Briefing du matin"
+      - assertVisible: "Revue du soir"
+      - assertVisible: "Priorité planifiée"

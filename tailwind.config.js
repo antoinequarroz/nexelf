@@ -44,8 +44,9 @@ module.exports = {
         semibold: ["Manrope_600SemiBold"],
       },
       letterSpacing: { calm: "-0.02em" },
-      minHeight: { touch: 44 },
-      minWidth: { touch: 44 },
+      // 48 dp satisfait Android et dépasse le minimum iOS de 44 pt.
+      minHeight: { touch: 48 },
+      minWidth: { touch: 48 },
     },
   },
   plugins: [],

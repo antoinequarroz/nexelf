@@ -8,12 +8,14 @@ type FieldProps = TextInputProps & {
   help?: string;
 };
 
-export function Field({ label, error, help, editable = true, ...props }: FieldProps) {
+export function Field({ label, error, help, editable = true, accessibilityHint: providedHint, ...props }: FieldProps) {
+  const accessibilityHint = error ?? help ?? providedHint;
   return (
     <View className="mb-5">
       <Text className="mb-2 font-medium text-sm text-ink">{label}</Text>
       <TextInput
         accessibilityLabel={label}
+        accessibilityHint={accessibilityHint}
         accessibilityState={{ disabled: !editable }}
         className={`min-h-14 rounded border bg-surface px-4 py-3 font-body text-base text-ink ${error ? "border-danger" : "border-line"} ${editable ? "" : "opacity-50"}`}
         editable={editable}

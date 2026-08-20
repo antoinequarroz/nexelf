@@ -78,7 +78,7 @@ export default function RevueSoir() {
         accessibilityRole="button"
         accessibilityLabel={t("revue.retourAccessible")}
         onPress={() => router.back()}
-        className="mb-8 min-h-11 justify-center self-start"
+        className="mb-8 min-h-touch justify-center self-start"
       >
         <Text className="font-medium text-muted">{t("revue.retour")}</Text>
       </Pressable>
@@ -100,7 +100,7 @@ export default function RevueSoir() {
         className="mb-7 flex-row justify-between"
       >
         {[1, 2, 3, 4, 5].map((valeur) => (
-          <View key={valeur} className="min-w-12"><Choice role="radio" label={`${valeur}`} selected={energie === valeur} onPress={() => setEnergie(energie === valeur ? undefined : valeur)} /></View>
+          <View key={valeur} className="min-w-12"><Choice accessibilityLabel={t("revue.energieValeur", { value: valeur })} role="radio" label={`${valeur}`} selected={energie === valeur} onPress={() => setEnergie(valeur)} /></View>
         ))}
       </View>
       <Field
