@@ -1,0 +1,8 @@
+appId: ch.antoinequarroz.nexelf
+---
+- launchApp
+- tapOn: "Réglages"
+- tapOn: "Nexelf Pro"
+- assertVisible: "Free"
+- assertVisible: "Pro"
+- assertVisible: "Restaurer mes achats"

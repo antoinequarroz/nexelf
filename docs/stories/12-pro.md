@@ -1,6 +1,6 @@
 # 12 — Découvrir et restaurer Nexelf Pro
 
-Statut : à faire  
+Statut : partiel — UI et intégration sûre livrées, catalogue et tests stores manquants
 Taille : M  
 Dépend de : 01, 06
 
@@ -10,7 +10,7 @@ En tant qu'utilisateur, je veux comprendre, essayer et restaurer Nexelf Pro afin
 
 ## Critères d'acceptation
 
-- [ ] Les limites Free et avantages Pro sont expliqués avant achat.
+- [x] Les limites Free et avantages Pro sont expliqués avant achat.
 - [ ] Les offres mensuelle et annuelle ainsi que l'essai de 7 jours affichent prix et renouvellement.
 - [ ] L'achat confirme le droit Pro sans double soumission.
 - [ ] La restauration des achats fonctionne depuis les réglages.
@@ -30,3 +30,5 @@ En tant qu'utilisateur, je veux comprendre, essayer et restaurer Nexelf Pro afin
 ## Notes techniques
 
 RevenueCat, restauration Apple obligatoire, prix exacts décidés avec `aq-pricing`.
+
+L'écran `/nexelf-pro` ne montre un bouton d'achat que lorsqu'une offering réelle est chargée et utilise exclusivement le prix localisé du store. L'absence de clé ou d'offre reste explicite et sans prix de substitution. Achat, restauration et gestion sont implémentés mais ne seront cochés qu'après validation Test Store puis sandbox sur development builds réels.

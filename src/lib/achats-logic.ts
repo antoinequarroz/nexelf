@@ -5,3 +5,12 @@ export function entitlementProActif(infos: {
 }): boolean {
   return Boolean(infos.entitlements.active[ENTITLEMENT_PRO]);
 }
+
+export function achatAnnule(erreur: unknown): boolean {
+  return Boolean(
+    erreur &&
+    typeof erreur === "object" &&
+    "userCancelled" in erreur &&
+    erreur.userCancelled === true,
+  );
+}

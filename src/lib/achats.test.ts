@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { entitlementProActif } from "./achats-logic";
+import { achatAnnule, entitlementProActif } from "./achats-logic";
 
 describe("droits RevenueCat", () => {
   it("n'active que l'entitlement pro explicite", () => {
@@ -9,5 +9,10 @@ describe("droits RevenueCat", () => {
     expect(
       entitlementProActif({ entitlements: { active: { pro: {} } } } as never),
     ).toBe(true);
+  });
+
+  it("distingue une annulation utilisateur d'une erreur de paiement", () => {
+    expect(achatAnnule({ userCancelled: true })).toBe(true);
+    expect(achatAnnule(new Error("network"))).toBe(false);
   });
 });
