@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { router } from "expo-router";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
 import { api } from "../../../convex/_generated/api";
 import { dateLocale, dateLocaleConvex, detailAction } from "../../lib/rituel";
+import { Button, Card, Feedback, Header, Progress, Screen, Section } from "../../components/ui";
 
 export default function Accueil() {
   const { t, i18n } = useTranslation();
@@ -34,53 +35,10 @@ export default function Accueil() {
     contexte === undefined ||
     habitudes === undefined
   )
-    return (
-      <View
-        accessibilityLiveRegion="polite"
-        className="flex-1 items-center justify-center bg-canvas px-8"
-      >
-        <Text className="font-display text-xl text-ink">
-          {t("rituel.chargementTitre")}
-        </Text>
-        <Text className="mt-2 text-center font-body text-muted">
-          {t("rituel.chargementCorps")}
-        </Text>
-      </View>
-    );
+    return <Screen centered scroll={false}><Feedback fill loading title={t("rituel.chargementTitre")} message={t("rituel.chargementCorps")} /></Screen>;
 
   if (briefing === null)
-    return (
-      <View className="flex-1 justify-center bg-canvas px-6">
-        <Text
-          accessibilityRole="header"
-          className="font-display text-3xl text-ink"
-        >
-          {t("rituel.videTitre")}
-        </Text>
-        <Text className="mt-3 font-body text-base leading-6 text-muted">
-          {t("rituel.videCorps")}
-        </Text>
-        {erreur ? (
-          <Text
-            accessibilityRole="alert"
-            className="mt-5 rounded border border-danger p-4 text-danger"
-          >
-            {erreur}
-          </Text>
-        ) : null}
-        <Pressable
-          accessibilityRole="button"
-          accessibilityState={{ busy: creation, disabled: creation }}
-          disabled={creation}
-          onPress={creer}
-          className="mt-8 min-h-14 items-center justify-center rounded bg-lime px-6 disabled:opacity-40"
-        >
-          <Text className="font-semibold text-base text-lime-ink">
-            {creation ? t("rituel.creation") : t("rituel.creerJournee")}
-          </Text>
-        </Pressable>
-      </View>
-    );
+    return <Screen centered scroll={false}><Header title={t("rituel.videTitre")} description={t("rituel.videCorps")} />{erreur ? <View className="mb-6"><Feedback tone="danger" message={erreur} /></View> : null}<Button label={t("rituel.creerJournee")} loadingLabel={t("rituel.creation")} loading={creation} onPress={creer} /></Screen>;
 
   const actionsActives = briefing.actions.filter(
     (action) => action.statut === "aFaire",
@@ -90,33 +48,15 @@ export default function Accueil() {
       habitude.statut === "active" &&
       habitude.jours.includes(new Date().getDay()),
   );
+  const essentiel = actionsActives[0];
+  const terminees = briefing.actions.filter((action) => action.statut === "terminee").length;
   return (
-    <ScrollView
-      className="flex-1 bg-canvas"
-      contentContainerClassName="px-6 pb-12 pt-8"
-    >
-      <View className="mb-9 flex-row items-start justify-between">
-        <View className="flex-1 pr-5">
-          <Text className="font-medium text-xs uppercase tracking-widest text-subtle">
-            {dateLocale(i18n.language)}
-          </Text>
-          <Text
-            accessibilityRole="header"
-            className="mt-2 font-display text-4xl tracking-calm text-ink"
-          >
-            {t("rituel.bonjour")}
-          </Text>
-        </View>
-        <View
-          accessibilityLabel={t("app.nom")}
-          className="h-10 w-10 items-center justify-center rounded-full border border-line bg-surface"
-        >
-          <Text className="font-semibold text-sm text-lime">NX</Text>
-        </View>
-      </View>
-      <View className="mb-8 rounded-lg border border-line bg-surface p-5">
+    <Screen>
+      <Header eyebrow={dateLocale(i18n.language)} title={t("rituel.bonjour")} />
+      <Section title={t("rituel.cap")}>
+      <Card tone="reflection">
         <Text className="font-semibold text-xs uppercase tracking-widest text-muted">
-          {t("rituel.cap")}
+          {t("onboarding.cap")}
         </Text>
         <Text className="mt-4 font-display text-2xl leading-8 text-ink">
           {briefing.journee.cap || t("rituel.capLibre")}
@@ -124,48 +64,15 @@ export default function Accueil() {
         <Text className="mt-3 font-body text-sm leading-6 text-muted">
           {t("rituel.controle")}
         </Text>
-      </View>
-      <Text className="mb-5 font-semibold text-xs uppercase tracking-widest text-subtle">
-        {t("rituel.priorites", { count: actionsActives.length })}
-      </Text>
-      {actionsActives.length === 0 ? (
-        <View className="mb-8 rounded border border-line bg-surface p-5">
-          <Text className="font-medium text-ink">
-            {t("rituel.aucunePriorite")}
-          </Text>
-          <Text className="mt-2 font-body text-sm leading-5 text-muted">
-            {t("rituel.aucunePrioriteCorps")}
-          </Text>
-        </View>
-      ) : (
-        <View className="mb-5">
-          {actionsActives.map((action, index) => (
-            <View
-              key={action._id}
-              className="mb-3 flex-row rounded border border-line bg-surface p-4"
-            >
-              <View className="mr-4 h-7 w-7 items-center justify-center rounded-full border border-lime">
-                <Text className="font-semibold text-xs text-lime">
-                  {index + 1}
-                </Text>
-              </View>
-              <View className="flex-1">
-                <Text className="font-medium text-base text-ink">
-                  {action.titre}
-                </Text>
-                <Text className="mt-1 font-body text-sm text-muted">
-                  {detailAction(action, t)}
-                </Text>
-                {action.raison ? (
-                  <Text className="mt-2 font-body text-xs leading-5 text-subtle">
-                    {action.raison}
-                  </Text>
-                ) : null}
-              </View>
-            </View>
-          ))}
-        </View>
-      )}
+      </Card>
+      </Section>
+      <Section title={t("rituel.priorites", { count: actionsActives.length })}>
+        {essentiel ? <Card tone="impulse"><Text className="font-display text-xl leading-7 text-ink">{essentiel.titre}</Text><Text className="mt-2 font-body text-sm text-muted">{detailAction(essentiel, t)}</Text>{essentiel.raison ? <Text className="mt-2 font-body text-sm leading-5 text-subtle">{essentiel.raison}</Text> : null}</Card> : <Feedback title={t("rituel.aucunePriorite")} message={t("rituel.aucunePrioriteCorps")} />}
+      </Section>
+      <Section title={t("briefing.progress")}>
+        <Progress value={terminees} max={Math.max(1, briefing.actions.length)} label={t("rituel.priorites", { count: terminees })} />
+        {actionsActives.slice(1).map((action) => <View key={action._id} className="mt-4 border-t border-line pt-4"><Text className="font-medium text-ink">{action.titre}</Text><Text className="mt-1 text-sm text-muted">{detailAction(action, t)}</Text></View>)}
+      </Section>
       {habitudesDuJour.length > 0 || (contexte?.contraintes.length ?? 0) > 0 ? (
         <View className="mb-8 flex-row gap-3">
           <View className="flex-1 rounded border border-line bg-surface p-4">
@@ -209,44 +116,9 @@ export default function Accueil() {
           </View>
         </View>
       ) : null}
-      {planAccepte ? (
-        <View
-          accessibilityLiveRegion="polite"
-          className="mb-3 rounded border border-lime bg-surface p-4"
-        >
-          <Text className="font-medium text-lime">
-            {t("rituel.planAccepte")}
-          </Text>
-        </View>
-      ) : (
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => setPlanAccepte(true)}
-          className="min-h-14 items-center justify-center rounded bg-lime px-6"
-        >
-          <Text className="font-semibold text-base text-lime-ink">
-            {t("rituel.accepter")}
-          </Text>
-        </Pressable>
-      )}
-      <Pressable
-        accessibilityRole="button"
-        onPress={() => router.push("/planning")}
-        className="mt-3 min-h-14 items-center justify-center rounded border border-line px-6"
-      >
-        <Text className="font-semibold text-base text-ink">
-          {t("rituel.adapter")}
-        </Text>
-      </Pressable>
-      <Pressable
-        accessibilityRole="button"
-        onPress={() => router.push("/revue-soir")}
-        className="mt-3 min-h-12 items-center justify-center px-6"
-      >
-        <Text className="font-medium text-sm text-muted">
-          {t("rituel.ouvrirRevue")}
-        </Text>
-      </Pressable>
-    </ScrollView>
+      {planAccepte ? <View className="mb-3"><Feedback tone="success" message={t("rituel.planAccepte")} /></View> : <Button label={t("rituel.accepter")} onPress={() => setPlanAccepte(true)} />}
+      <View className="mt-3"><Button variant="secondary" label={t("rituel.adapter")} onPress={() => router.push("/planning")} /></View>
+      <View className="mt-1"><Button variant="ghost" label={t("rituel.ouvrirRevue")} onPress={() => router.push("/revue-soir")} /></View>
+    </Screen>
   );
 }

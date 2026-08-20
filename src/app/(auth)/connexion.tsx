@@ -60,7 +60,7 @@ export default function Connexion() {
       />
       <Link href="/mot-de-passe-oublie" asChild>
         <Pressable accessibilityRole="link" className="mb-6 min-h-12 justify-center self-start">
-          <Text className="font-medium text-sm text-lime">{t("auth.motDePasseOublie")}</Text>
+          <Text className="font-medium text-sm text-action">{t("auth.motDePasseOublie")}</Text>
         </Pressable>
       </Link>
       <AuthButton label={t("auth.seConnecter")} loadingLabel={t("auth.connexionEnCours")} loading={loading} onPress={submit} />
@@ -68,7 +68,7 @@ export default function Connexion() {
         <Text className="font-body text-sm text-muted">{t("auth.pasDeCompte")} </Text>
         <Link href="/inscription" asChild>
           <Pressable accessibilityRole="link" className="min-h-12 justify-center">
-            <Text className="font-semibold text-sm text-lime">{t("auth.creerCompte")}</Text>
+            <Text className="font-semibold text-sm text-action">{t("auth.creerCompte")}</Text>
           </Pressable>
         </Link>
       </View>

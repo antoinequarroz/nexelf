@@ -51,7 +51,7 @@ export default function MotDePasseOublie() {
       ) : null}
       <Link href="/connexion" asChild>
         <Pressable accessibilityRole="link" className="mt-6 min-h-12 items-center justify-center">
-          <Text className="font-semibold text-sm text-lime">{t("auth.retourConnexion")}</Text>
+          <Text className="font-semibold text-sm text-action">{t("auth.retourConnexion")}</Text>
         </Pressable>
       </Link>
     </AuthShell>

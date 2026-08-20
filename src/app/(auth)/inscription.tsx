@@ -53,7 +53,7 @@ export default function Inscription() {
         <Text className="font-body text-sm text-muted">{t("auth.dejaUnCompte")} </Text>
         <Link href="/connexion" asChild>
           <Pressable accessibilityRole="link" className="min-h-12 justify-center">
-            <Text className="font-semibold text-sm text-lime">{t("auth.seConnecter")}</Text>
+            <Text className="font-semibold text-sm text-action">{t("auth.seConnecter")}</Text>
           </Pressable>
         </Link>
       </View>
