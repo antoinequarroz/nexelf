@@ -79,3 +79,12 @@ L'élan vient d'abord de la composition. Les animations sont brèves, déclench�
 - Aucune couleur ou chaîne d'interface en dur dans un composant.
 - Aucun pictogramme Unicode ou emoji en guise de système d'icônes.
 - Aucun ton culpabilisant, alarmiste ou faussement enthousiaste.
+
+## Références images — story 21
+
+La mise en production des images suit deux documents complémentaires :
+
+- [`visual-language.md`](visual-language.md) définit les familles, la lumière, les cadrages, la matrice écran/ratio/point focal, les responsabilités et les prompts de génération ;
+- [`visual-reference-board.md`](visual-reference-board.md) fournit la planche de sélection, les anti-références et les compositions avec ou sans image.
+
+Ces références complètent les décisions ci-dessus sans autoriser le téléchargement ou la publication d'un asset dont la provenance, la licence ou le consentement n'est pas validé.
