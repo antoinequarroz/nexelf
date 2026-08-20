@@ -1,0 +1,20 @@
+appId: com.nexelf.app
+---
+- launchApp
+- runFlow:
+    when:
+      visible: "Mes objectifs"
+    commands:
+      - tapOn: "Titre"
+      - inputText: "Courir 5 km"
+      - tapOn: "Pourquoi est-ce important ?"
+      - inputText: "Retrouver de l energie"
+      - tapOn: "Enregistrer l’objectif"
+      - assertVisible: "Courir 5 km"
+- openLink: "nexelf:///planning"
+- assertVisible:
+    text: "Planning du jour"
+- tapOn: "Action"
+- inputText: "Marcher dehors"
+- tapOn: "Ajouter au planning"
+- assertVisible: "Marcher dehors"

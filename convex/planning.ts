@@ -36,12 +36,23 @@ export const ajouterAction = mutation({
 })
 
 export const mettreAJourAction = mutation({
-  args: { actionId: v.id('actionsQuotidiennes'), statut: v.optional(statutAction), creneau: v.optional(v.string()), reporteeAu: v.optional(v.string()), note: v.optional(v.string()) },
+  args: { actionId: v.id('actionsQuotidiennes'), titre: v.optional(v.string()), dureeMinutes: v.optional(v.number()), statut: v.optional(statutAction), creneau: v.optional(v.string()), reporteeAu: v.optional(v.string()), note: v.optional(v.string()), ordre: v.optional(v.number()) },
   handler: async (ctx, { actionId, ...changements }) => {
     const profil = await exigerProfil(ctx)
     const action = await ctx.db.get(actionId)
     if (!action || action.profilId !== profil._id) throw new Error('Action interdite')
-    await ctx.db.patch(actionId, { ...changements, version: action.version + 1, misAJourLe: Date.now() })
+    if (changements.dureeMinutes !== undefined && (changements.dureeMinutes < 1 || changements.dureeMinutes > 24 * 60)) throw new Error('Durée invalide')
+    await ctx.db.patch(actionId, { ...changements, titre: changements.titre?.trim(), version: action.version + 1, misAJourLe: Date.now() })
+  }
+})
+
+export const supprimerAction = mutation({
+  args: { actionId: v.id('actionsQuotidiennes') },
+  handler: async (ctx, { actionId }) => {
+    const profil = await exigerProfil(ctx)
+    const action = await ctx.db.get(actionId)
+    if (!action || action.profilId !== profil._id) throw new Error('Action interdite')
+    await ctx.db.delete(actionId)
   }
 })
 

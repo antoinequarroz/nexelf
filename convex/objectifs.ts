@@ -35,6 +35,17 @@ export const changerStatut = mutation({
   }
 })
 
+export const modifier = mutation({
+  args: { objectifId: v.id('objectifs'), titre: v.string(), motivation: v.string(), horizon: horizonObjectif, priorite, echeance: v.optional(v.string()) },
+  handler: async (ctx, { objectifId, ...changements }) => {
+    const profil = await exigerProfil(ctx)
+    const objectif = await ctx.db.get(objectifId)
+    if (!objectif || objectif.profilId !== profil._id) throw new Error('Objectif interdit')
+    if (!changements.titre.trim()) throw new Error('Titre requis')
+    await ctx.db.patch(objectifId, { ...changements, titre: changements.titre.trim(), motivation: changements.motivation.trim(), version: objectif.version + 1, misAJourLe: Date.now() })
+  }
+})
+
 export const supprimer = mutation({
   args: { objectifId: v.id('objectifs') },
   handler: async (ctx, args) => {

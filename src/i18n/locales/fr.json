@@ -29,6 +29,62 @@
     "adapt": "Adapter ma journée",
     "control": "Nexelf propose. Tu gardes toujours le dernier mot."
   },
+  "rituel": {
+    "bonjour": "Bonjour.",
+    "chargementTitre": "Préparation de ton briefing…",
+    "chargementCorps": "Voici déjà l’essentiel : garde de la place pour l’imprévu.",
+    "videTitre": "Ta journée est encore libre.",
+    "videCorps": "Crée une journée vide, puis choisis toi-même ce qui mérite ton attention.",
+    "creerJournee": "Créer ma journée",
+    "creation": "Création…",
+    "erreurCreation": "Impossible de créer la journée. Vérifie ta connexion puis réessaie.",
+    "cap": "Cap du jour",
+    "capLibre": "Choisis une intention simple pour aujourd’hui.",
+    "controle": "Ce plan vient de tes choix. Tu peux l’accepter ou l’adapter à tout moment.",
+    "priorites_one": "{{count}} priorité du jour",
+    "priorites_other": "{{count}} priorités du jour",
+    "aucunePriorite": "Aucune priorité imposée.",
+    "aucunePrioriteCorps": "Une journée vide ne pénalise aucune série. Ajoute seulement ce qui est réaliste.",
+    "minutes_one": "{{count}} min",
+    "minutes_other": "{{count}} min",
+    "niveaux": {
+      "haute": "Priorité haute",
+      "normale": "Priorité normale",
+      "basse": "Priorité basse"
+    },
+    "detail": "{{duree}} · {{priorite}}",
+    "detailAvecCreneau": "{{creneau}} · {{duree}} · {{priorite}}",
+    "accepter": "Accepter ce plan",
+    "planAccepte": "Plan accepté. Tu peux encore le modifier.",
+    "adapter": "Adapter ma journée",
+    "ouvrirRevue": "Ouvrir la revue du soir"
+  },
+  "revue": {
+    "titre": "Revue du soir",
+    "description": "Deux minutes suffisent. Chaque réponse est facultative et peut être ignorée.",
+    "chargement": "Préparation de ta revue…",
+    "chargementCorps": "Tes réponses déjà enregistrées vont réapparaître.",
+    "sansJournee": "Rien à clôturer aujourd’hui.",
+    "sansJourneeCorps": "Une journée oubliée reste simplement vide et ne casse aucune série.",
+    "retour": "Retour",
+    "retourAccessible": "Revenir au briefing",
+    "energie": "Quel était ton niveau d’énergie ?",
+    "energieValeur": "Énergie {{value}} sur 5",
+    "facultatif": "Facultatif · touche une seconde fois pour ignorer",
+    "blocage": "Un blocage à noter ?",
+    "note": "Qu’est-ce qui a compté aujourd’hui ?",
+    "ignorerPlaceholder": "Laisser vide pour ignorer",
+    "memoireLabel": "Avant toute mémoire",
+    "memoireVide": "Nexelf ne propose rien à retenir pour le moment.",
+    "memoireExplication": "Si tu écris quelque chose ici, ce sera seulement proposé à ta mémoire. Tu pourras encore le confirmer ou le refuser.",
+    "memoireChamp": "Proposition à retenir",
+    "memoirePlaceholder": "Par exemple : mes soirées doivent rester légères",
+    "terminer": "Terminer ma revue",
+    "garderBrouillon": "Garder comme brouillon",
+    "sauvegarde": "Sauvegarde…",
+    "terminee": "Revue terminée. Rien n’est ajouté à ta mémoire sans confirmation.",
+    "erreur": "La sauvegarde a échoué. Tes réponses restent dans cet écran pour réessayer."
+  },
   "etats": {
     "chargement": "Chargement…",
     "vide": {
@@ -88,9 +144,18 @@
   "notifications": {
     "titre": "Notifications",
     "description": "Choisis les rappels qui t'aident, sans bruit inutile.",
-    "briefing": { "titre": "Briefing du matin", "description": "Ton cap et tes priorités à 07:30." },
-    "review": { "titre": "Revue du soir", "description": "Un rappel doux à 20:30." },
-    "priorite": { "titre": "Priorité planifiée", "description": "Un rappel facultatif avant une priorité." },
+    "briefing": {
+      "titre": "Briefing du matin",
+      "description": "Ton cap et tes priorités à 07:30."
+    },
+    "review": {
+      "titre": "Revue du soir",
+      "description": "Un rappel doux à 20:30."
+    },
+    "priorite": {
+      "titre": "Priorité planifiée",
+      "description": "Un rappel facultatif avant une priorité."
+    },
     "limite": "Maximum trois notifications locales par jour. Aucun badge permanent.",
     "enregistrer": "Enregistrer les réglages",
     "enregistrement": "Enregistrement…",
@@ -103,6 +168,85 @@
       "reviewCorps": "Une revue courte suffit pour préparer demain."
     }
   },
+  "goals": {
+    "title": "Mes objectifs",
+    "subtitle": "Relie ce que tu fais aujourd’hui à la personne que tu souhaites devenir.",
+    "forbidden": "Connecte-toi pour accéder à tes objectifs.",
+    "saving": "Enregistrement…",
+    "save": "Enregistrer l’objectif",
+    "manual": "La décomposition automatique n’est pas active : aucune étape n’est inventée sans ta validation.",
+    "form": {
+      "create": "Nouvel objectif",
+      "edit": "Modifier l’objectif",
+      "title": "Titre",
+      "motivation": "Pourquoi est-ce important ?",
+      "deadline": "Échéance facultative",
+      "deadlinePlaceholder": "AAAA-MM-JJ"
+    },
+    "horizon": {
+      "court": "Court terme",
+      "moyen": "Moyen terme",
+      "long": "Long terme"
+    },
+    "priority": { "basse": "Basse", "normale": "Normale", "haute": "Haute" },
+    "status": { "actif": "Actif", "pause": "En pause", "archive": "Archivé" },
+    "actions": {
+      "edit": "Modifier",
+      "pause": "Mettre en pause",
+      "resume": "Reprendre",
+      "archive": "Archiver",
+      "delete": "Supprimer"
+    },
+    "empty": {
+      "title": "Choisis une première direction",
+      "body": "Un objectif clair aide Nexelf à protéger du temps pour ce qui compte."
+    },
+    "errors": {
+      "title": "Donne un titre à ton objectif.",
+      "save": "Impossible d’enregistrer. Ton brouillon reste disponible ici."
+    },
+    "noMotivation": "Aucune motivation précisée",
+    "deleteConfirm": "Supprimer cet objectif ? Cette action pourra être annulée juste après.",
+    "cancel": "Annuler",
+    "confirm": "Confirmer la suppression",
+    "undo": "Annuler la dernière suppression"
+  },
+  "planning": {
+    "title": "Planning du jour",
+    "subtitle": "Un plan réaliste, ajustable à tout moment.",
+    "forbidden": "Connecte-toi pour accéder à ton planning.",
+    "deterministic": "Mode manuel : Nexelf classe uniquement les actions que tu as saisies. Aucune IA ne génère ou ne modifie ton planning.",
+    "empty": {
+      "title": "Ta journée est encore libre",
+      "body": "Compose manuellement 3 à 5 priorités avec leur durée et leur créneau."
+    },
+    "flexible": "Créneau flexible",
+    "manualReason": "Action choisie manuellement",
+    "compose": "Ajouter une priorité",
+    "add": "Ajouter au planning",
+    "saving": "Enregistrement…",
+    "form": {
+      "title": "Action",
+      "reason": "Raison",
+      "duration": "Durée en minutes",
+      "slot": "Créneau, ex. 18:30"
+    },
+    "actions": {
+      "complete": "Terminer",
+      "reopen": "Rouvrir",
+      "postpone": "Reporter à demain",
+      "delete": "Supprimer"
+    },
+    "reorganize": "Prévisualiser une réorganisation",
+    "preview": "Aperçu avant confirmation",
+    "cancel": "Garder l’ordre actuel",
+    "confirm": "Appliquer",
+    "undo": "Annuler la dernière réorganisation",
+    "errors": {
+      "invalid": "Ajoute un titre et une durée valide.",
+      "save": "La modification n’a pas été synchronisée. Le plan affiché reste disponible."
+    }
+  },
   "onboarding": {
     "cap": "Ton prochain chapitre",
     "progression": "Étape {{current}} sur {{total}}",
@@ -113,22 +257,146 @@
     "erreur": "Impossible de sauvegarder. Vérifie ta connexion puis réessaie.",
     "validerPlan": "Valider ce premier plan",
     "etapes": {
-      "0": { "titre": "Quelles parties de ta vie comptent maintenant ?", "description": "Choisis au moins un domaine. Tu pourras les ajuster plus tard." },
-      "1": { "titre": "Qui souhaites-tu devenir ?", "description": "Décris une direction qui te ressemble, sans chercher la formule parfaite." },
-      "2": { "titre": "Choisis tes priorités.", "description": "Ajoute entre un et trois objectifs importants pour commencer." },
-      "3": { "titre": "Qu’est-ce qui structure tes journées ?", "description": "Indique les contraintes que ton planning devra respecter." },
-      "4": { "titre": "Quelle est ton énergie habituelle ?", "description": "1 signifie très faible, 5 très élevée. Il n’y a pas de mauvaise réponse." },
-      "5": { "titre": "Comment veux-tu être accompagné ?", "description": "Choisis le ton de ton copilote. Tu gardes toujours le dernier mot." },
-      "6": { "titre": "Construis ton premier plan.", "description": "Ajuste tes premières actions et leur durée avant de les valider." }
+      "0": {
+        "titre": "Quelles parties de ta vie comptent maintenant ?",
+        "description": "Choisis au moins un domaine. Tu pourras les ajuster plus tard."
+      },
+      "1": {
+        "titre": "Qui souhaites-tu devenir ?",
+        "description": "Décris une direction qui te ressemble, sans chercher la formule parfaite."
+      },
+      "2": {
+        "titre": "Choisis tes priorités.",
+        "description": "Ajoute entre un et trois objectifs importants pour commencer."
+      },
+      "3": {
+        "titre": "Qu’est-ce qui structure tes journées ?",
+        "description": "Indique les contraintes que ton planning devra respecter."
+      },
+      "4": {
+        "titre": "Quelle est ton énergie habituelle ?",
+        "description": "1 signifie très faible, 5 très élevée. Il n’y a pas de mauvaise réponse."
+      },
+      "5": {
+        "titre": "Comment veux-tu être accompagné ?",
+        "description": "Choisis le ton de ton copilote. Tu gardes toujours le dernier mot."
+      },
+      "6": {
+        "titre": "Construis ton premier plan.",
+        "description": "Ajuste tes premières actions et leur durée avant de les valider."
+      }
     },
-    "domaines": { "personnel": "Vie personnelle", "professionnel": "Travail", "sante": "Sport et santé", "apprentissage": "Apprentissage", "projets": "Projets" },
-    "contraintes": { "travail": "Horaires de travail", "sommeil": "Sommeil", "famille": "Famille", "transport": "Transports", "autre": "Autre" },
-    "tons": { "doux": "Doux et encourageant", "equilibre": "Calme et équilibré", "direct": "Direct et concis" },
+    "domaines": {
+      "personnel": "Vie personnelle",
+      "professionnel": "Travail",
+      "sante": "Sport et santé",
+      "apprentissage": "Apprentissage",
+      "projets": "Projets"
+    },
+    "contraintes": {
+      "travail": "Horaires de travail",
+      "sommeil": "Sommeil",
+      "famille": "Famille",
+      "transport": "Transports",
+      "autre": "Autre"
+    },
+    "tons": {
+      "doux": "Doux et encourageant",
+      "equilibre": "Calme et équilibré",
+      "direct": "Direct et concis"
+    },
     "futurLabel": "La personne que tu souhaites devenir",
     "futurPlaceholder": "Je souhaite devenir une personne qui…",
     "objectifLabel": "Objectif {{number}}",
     "objectifPlaceholder": "Par exemple : avancer sur mon projet chaque semaine",
     "ajouterObjectif": "+ Ajouter un objectif",
-    "plan": { "action": "Action {{number}}", "duree": "Durée (min)", "raison": "Première action choisie pendant l’onboarding" }
+    "plan": {
+      "action": "Action {{number}}",
+      "duree": "Durée (min)",
+      "raison": "Première action choisie pendant l’onboarding"
+    }
+  },
+  "copilote": {
+    "title": "Copilote",
+    "description": "Dépose ton contexte sans perdre le contrôle de ta journée.",
+    "manualTitle": "Mode manuel",
+    "manualBody": "Tes messages sont enregistrés, mais aucune réponse IA n’est générée tant que le service n’est pas configuré. Aucune action n’est exécutée automatiquement.",
+    "defaultTitle": "Adapter ma journée",
+    "excludeMemory": "Exclure cette conversation de la mémoire",
+    "memoryExcluded": "Conversation exclue de la mémoire",
+    "emptyTitle": "Explique ce qui a changé",
+    "emptyBody": "Par exemple : « J’ai moins d’énergie ce soir. » Ton message reste disponible pour une analyse ultérieure.",
+    "you": "Toi",
+    "inputLabel": "Message au copilote",
+    "placeholder": "Ma journée a changé…",
+    "save": "Enregistrer le message",
+    "saving": "Enregistrement…",
+    "error": "Le message n’a pas été envoyé. Il reste dans le champ pour réessayer."
+  },
+  "memory": {
+    "title": "Mémoire",
+    "description": "Tu décides précisément ce que Nexelf peut retenir.",
+    "enabled": "Autoriser la mémoire",
+    "enabledBody": "Désactive-la à tout moment. Les souvenirs existants restent visibles et supprimables.",
+    "proposals": "À confirmer",
+    "noSilent": "Aucun souvenir en attente. Nexelf ne mémorise jamais une information silencieusement.",
+    "saved": "Souvenirs enregistrés",
+    "empty": "Aucun souvenir confirmé.",
+    "sourceDate": "Source : {{source}} · {{date}}",
+    "confirm": "Confirmer",
+    "reject": "Refuser",
+    "edit": "Corriger",
+    "editLabel": "Contenu corrigé",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "deleteTitle": "Supprimer ce souvenir ?",
+    "deleteBody": "Il ne sera plus utilisé pour personnaliser Nexelf.",
+    "cancel": "Annuler",
+    "categories": {
+      "fait": "Fait durable",
+      "preference": "Préférence",
+      "contrainte": "Contrainte",
+      "observationTemporaire": "Observation temporaire"
+    }
+  },
+  "habits": {
+    "title": "Habitudes et routines",
+    "description": "Progresse avec souplesse, sans série punitive ni culpabilisation.",
+    "createTitle": "Nouvelle habitude",
+    "name": "Nom de l’habitude",
+    "namePlaceholder": "15 minutes de lecture",
+    "moment": "Moment conseillé",
+    "momentPlaceholder": "Après le déjeuner (facultatif)",
+    "add": "Ajouter l’habitude",
+    "today": "Aujourd’hui",
+    "empty": "Aucune habitude active. Commence petit : marcher, lire ou préparer demain.",
+    "flexible": "Moment flexible",
+    "complete": "Terminée",
+    "skip": "Ignorer",
+    "postpone": "Reporter à demain",
+    "pause": "Mettre en pause",
+    "resume": "Reprendre",
+    "archive": "Archiver",
+    "routineTitle": "Créer une routine",
+    "routineName": "Nom de la routine",
+    "createRoutine": "Créer la routine",
+    "routineCount_one": "{{count}} routine",
+    "routineCount_other": "{{count}} routines",
+    "days": {
+      "0": "D",
+      "1": "L",
+      "2": "M",
+      "3": "M",
+      "4": "J",
+      "5": "V",
+      "6": "S"
+    },
+    "statuses": {
+      "aFaire": "À faire",
+      "enCours": "En cours",
+      "terminee": "Terminée",
+      "ignoree": "Ignorée sans pénalité",
+      "reportee": "Reportée"
+    }
   }
 }

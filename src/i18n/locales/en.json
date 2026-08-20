@@ -29,6 +29,62 @@
     "adapt": "Adapt my day",
     "control": "Nexelf suggests. You always have the final say."
   },
+  "rituel": {
+    "bonjour": "Good morning.",
+    "chargementTitre": "Preparing your briefing…",
+    "chargementCorps": "Here is what matters already: leave room for the unexpected.",
+    "videTitre": "Your day is still open.",
+    "videCorps": "Create an empty day, then decide what truly deserves your attention.",
+    "creerJournee": "Create my day",
+    "creation": "Creating…",
+    "erreurCreation": "Unable to create the day. Check your connection and try again.",
+    "cap": "Today's direction",
+    "capLibre": "Choose one simple intention for today.",
+    "controle": "This plan comes from your choices. Accept it or adapt it at any time.",
+    "priorites_one": "{{count}} priority today",
+    "priorites_other": "{{count}} priorities today",
+    "aucunePriorite": "No imposed priority.",
+    "aucunePrioriteCorps": "An empty day never breaks a streak. Add only what feels realistic.",
+    "minutes_one": "{{count}} min",
+    "minutes_other": "{{count}} min",
+    "niveaux": {
+      "haute": "High priority",
+      "normale": "Normal priority",
+      "basse": "Low priority"
+    },
+    "detail": "{{duree}} · {{priorite}}",
+    "detailAvecCreneau": "{{creneau}} · {{duree}} · {{priorite}}",
+    "accepter": "Accept this plan",
+    "planAccepte": "Plan accepted. You can still change it.",
+    "adapter": "Adapt my day",
+    "ouvrirRevue": "Open evening review"
+  },
+  "revue": {
+    "titre": "Evening review",
+    "description": "Two minutes is enough. Every answer is optional and can be skipped.",
+    "chargement": "Preparing your review…",
+    "chargementCorps": "Your previously saved answers will reappear.",
+    "sansJournee": "Nothing to close today.",
+    "sansJourneeCorps": "A forgotten day simply stays empty and never breaks a streak.",
+    "retour": "Back",
+    "retourAccessible": "Go back to briefing",
+    "energie": "How was your energy?",
+    "energieValeur": "Energy {{value}} out of 5",
+    "facultatif": "Optional · tap again to skip",
+    "blocage": "Any blocker worth noting?",
+    "note": "What mattered today?",
+    "ignorerPlaceholder": "Leave empty to skip",
+    "memoireLabel": "Before any memory",
+    "memoireVide": "Nexelf is not suggesting anything to remember yet.",
+    "memoireExplication": "If you write something here, it will only be proposed to your memory. You can still confirm or reject it.",
+    "memoireChamp": "Proposed memory",
+    "memoirePlaceholder": "For example: my evenings need to stay light",
+    "terminer": "Finish my review",
+    "garderBrouillon": "Keep as draft",
+    "sauvegarde": "Saving…",
+    "terminee": "Review complete. Nothing is added to your memory without confirmation.",
+    "erreur": "Saving failed. Your answers stay on this screen so you can try again."
+  },
   "etats": {
     "chargement": "Loading…",
     "vide": {
@@ -88,9 +144,18 @@
   "notifications": {
     "titre": "Notifications",
     "description": "Choose the reminders that help, without unnecessary noise.",
-    "briefing": { "titre": "Morning briefing", "description": "Your direction and priorities at 7:30 AM." },
-    "review": { "titre": "Evening review", "description": "A gentle reminder at 8:30 PM." },
-    "priorite": { "titre": "Scheduled priority", "description": "An optional reminder before a priority." },
+    "briefing": {
+      "titre": "Morning briefing",
+      "description": "Your direction and priorities at 7:30 AM."
+    },
+    "review": {
+      "titre": "Evening review",
+      "description": "A gentle reminder at 8:30 PM."
+    },
+    "priorite": {
+      "titre": "Scheduled priority",
+      "description": "An optional reminder before a priority."
+    },
     "limite": "Up to three local notifications per day. No permanent badge.",
     "enregistrer": "Save settings",
     "enregistrement": "Saving…",
@@ -103,6 +168,85 @@
       "reviewCorps": "A short review is enough to prepare for tomorrow."
     }
   },
+  "goals": {
+    "title": "My goals",
+    "subtitle": "Connect what you do today to the person you want to become.",
+    "forbidden": "Sign in to access your goals.",
+    "saving": "Saving…",
+    "save": "Save goal",
+    "manual": "Automatic breakdown is not enabled: no step is invented without your approval.",
+    "form": {
+      "create": "New goal",
+      "edit": "Edit goal",
+      "title": "Title",
+      "motivation": "Why does it matter?",
+      "deadline": "Optional deadline",
+      "deadlinePlaceholder": "YYYY-MM-DD"
+    },
+    "horizon": {
+      "court": "Short term",
+      "moyen": "Medium term",
+      "long": "Long term"
+    },
+    "priority": { "basse": "Low", "normale": "Normal", "haute": "High" },
+    "status": { "actif": "Active", "pause": "Paused", "archive": "Archived" },
+    "actions": {
+      "edit": "Edit",
+      "pause": "Pause",
+      "resume": "Resume",
+      "archive": "Archive",
+      "delete": "Delete"
+    },
+    "empty": {
+      "title": "Choose your first direction",
+      "body": "A clear goal helps Nexelf protect time for what matters."
+    },
+    "errors": {
+      "title": "Give your goal a title.",
+      "save": "Unable to save. Your draft remains available here."
+    },
+    "noMotivation": "No motivation provided",
+    "deleteConfirm": "Delete this goal? You can undo it immediately afterwards.",
+    "cancel": "Cancel",
+    "confirm": "Confirm deletion",
+    "undo": "Undo last deletion"
+  },
+  "planning": {
+    "title": "Today's plan",
+    "subtitle": "A realistic plan you can adjust at any time.",
+    "forbidden": "Sign in to access your plan.",
+    "deterministic": "Manual mode: Nexelf only sorts actions you entered. No AI generates or changes your plan.",
+    "empty": {
+      "title": "Your day is still open",
+      "body": "Manually compose 3 to 5 priorities with their duration and time slot."
+    },
+    "flexible": "Flexible time",
+    "manualReason": "Manually chosen action",
+    "compose": "Add a priority",
+    "add": "Add to plan",
+    "saving": "Saving…",
+    "form": {
+      "title": "Action",
+      "reason": "Reason",
+      "duration": "Duration in minutes",
+      "slot": "Time, e.g. 6:30 PM"
+    },
+    "actions": {
+      "complete": "Complete",
+      "reopen": "Reopen",
+      "postpone": "Move to tomorrow",
+      "delete": "Delete"
+    },
+    "reorganize": "Preview a reorganization",
+    "preview": "Preview before confirmation",
+    "cancel": "Keep current order",
+    "confirm": "Apply",
+    "undo": "Undo last reorganization",
+    "errors": {
+      "invalid": "Add a title and valid duration.",
+      "save": "The change was not synced. The displayed plan remains available."
+    }
+  },
   "onboarding": {
     "cap": "Your next chapter",
     "progression": "Step {{current}} of {{total}}",
@@ -113,22 +257,146 @@
     "erreur": "Unable to save. Check your connection and try again.",
     "validerPlan": "Confirm this first plan",
     "etapes": {
-      "0": { "titre": "Which parts of your life matter now?", "description": "Choose at least one area. You can adjust them later." },
-      "1": { "titre": "Who do you want to become?", "description": "Describe a direction that feels true to you. It does not need to be perfect." },
-      "2": { "titre": "Choose your priorities.", "description": "Add one to three important goals to get started." },
-      "3": { "titre": "What shapes your days?", "description": "Select the constraints your plan needs to respect." },
-      "4": { "titre": "What is your usual energy level?", "description": "1 means very low and 5 very high. There is no wrong answer." },
-      "5": { "titre": "How should Nexelf support you?", "description": "Choose your copilot’s tone. You always have the final say." },
-      "6": { "titre": "Build your first plan.", "description": "Adjust your first actions and their duration before confirming." }
+      "0": {
+        "titre": "Which parts of your life matter now?",
+        "description": "Choose at least one area. You can adjust them later."
+      },
+      "1": {
+        "titre": "Who do you want to become?",
+        "description": "Describe a direction that feels true to you. It does not need to be perfect."
+      },
+      "2": {
+        "titre": "Choose your priorities.",
+        "description": "Add one to three important goals to get started."
+      },
+      "3": {
+        "titre": "What shapes your days?",
+        "description": "Select the constraints your plan needs to respect."
+      },
+      "4": {
+        "titre": "What is your usual energy level?",
+        "description": "1 means very low and 5 very high. There is no wrong answer."
+      },
+      "5": {
+        "titre": "How should Nexelf support you?",
+        "description": "Choose your copilot’s tone. You always have the final say."
+      },
+      "6": {
+        "titre": "Build your first plan.",
+        "description": "Adjust your first actions and their duration before confirming."
+      }
     },
-    "domaines": { "personnel": "Personal life", "professionnel": "Work", "sante": "Sport and health", "apprentissage": "Learning", "projets": "Projects" },
-    "contraintes": { "travail": "Work schedule", "sommeil": "Sleep", "famille": "Family", "transport": "Commute", "autre": "Other" },
-    "tons": { "doux": "Gentle and encouraging", "equilibre": "Calm and balanced", "direct": "Direct and concise" },
+    "domaines": {
+      "personnel": "Personal life",
+      "professionnel": "Work",
+      "sante": "Sport and health",
+      "apprentissage": "Learning",
+      "projets": "Projects"
+    },
+    "contraintes": {
+      "travail": "Work schedule",
+      "sommeil": "Sleep",
+      "famille": "Family",
+      "transport": "Commute",
+      "autre": "Other"
+    },
+    "tons": {
+      "doux": "Gentle and encouraging",
+      "equilibre": "Calm and balanced",
+      "direct": "Direct and concise"
+    },
     "futurLabel": "The person you want to become",
     "futurPlaceholder": "I want to become someone who…",
     "objectifLabel": "Goal {{number}}",
     "objectifPlaceholder": "For example: move my project forward every week",
     "ajouterObjectif": "+ Add a goal",
-    "plan": { "action": "Action {{number}}", "duree": "Duration (min)", "raison": "First action selected during onboarding" }
+    "plan": {
+      "action": "Action {{number}}",
+      "duree": "Duration (min)",
+      "raison": "First action selected during onboarding"
+    }
+  },
+  "copilote": {
+    "title": "Copilot",
+    "description": "Share your context without giving up control of your day.",
+    "manualTitle": "Manual mode",
+    "manualBody": "Your messages are saved, but no AI response is generated until the service is configured. No action runs automatically.",
+    "defaultTitle": "Adapt my day",
+    "excludeMemory": "Exclude this conversation from memory",
+    "memoryExcluded": "Conversation excluded from memory",
+    "emptyTitle": "Explain what changed",
+    "emptyBody": "For example: “I have less energy tonight.” Your message stays available for later analysis.",
+    "you": "You",
+    "inputLabel": "Message to the copilot",
+    "placeholder": "My day has changed…",
+    "save": "Save message",
+    "saving": "Saving…",
+    "error": "The message was not sent. It remains in the field so you can retry."
+  },
+  "memory": {
+    "title": "Memory",
+    "description": "You decide exactly what Nexelf may remember.",
+    "enabled": "Enable memory",
+    "enabledBody": "Turn it off at any time. Existing memories remain visible and removable.",
+    "proposals": "To confirm",
+    "noSilent": "No pending memories. Nexelf never stores information silently.",
+    "saved": "Saved memories",
+    "empty": "No confirmed memories.",
+    "sourceDate": "Source: {{source}} · {{date}}",
+    "confirm": "Confirm",
+    "reject": "Reject",
+    "edit": "Edit",
+    "editLabel": "Edited content",
+    "save": "Save",
+    "delete": "Delete",
+    "deleteTitle": "Delete this memory?",
+    "deleteBody": "It will no longer be used to personalize Nexelf.",
+    "cancel": "Cancel",
+    "categories": {
+      "fait": "Long-term fact",
+      "preference": "Preference",
+      "contrainte": "Constraint",
+      "observationTemporaire": "Temporary observation"
+    }
+  },
+  "habits": {
+    "title": "Habits and routines",
+    "description": "Make flexible progress without punitive streaks or guilt.",
+    "createTitle": "New habit",
+    "name": "Habit name",
+    "namePlaceholder": "Read for 15 minutes",
+    "moment": "Suggested time",
+    "momentPlaceholder": "After lunch (optional)",
+    "add": "Add habit",
+    "today": "Today",
+    "empty": "No active habits. Start small: walk, read, or prepare tomorrow.",
+    "flexible": "Flexible time",
+    "complete": "Complete",
+    "skip": "Skip",
+    "postpone": "Move to tomorrow",
+    "pause": "Pause",
+    "resume": "Resume",
+    "archive": "Archive",
+    "routineTitle": "Create a routine",
+    "routineName": "Routine name",
+    "createRoutine": "Create routine",
+    "routineCount_one": "{{count}} routine",
+    "routineCount_other": "{{count}} routines",
+    "days": {
+      "0": "S",
+      "1": "M",
+      "2": "T",
+      "3": "W",
+      "4": "T",
+      "5": "F",
+      "6": "S"
+    },
+    "statuses": {
+      "aFaire": "To do",
+      "enCours": "In progress",
+      "terminee": "Completed",
+      "ignoree": "Skipped without penalty",
+      "reportee": "Postponed"
+    }
   }
 }
