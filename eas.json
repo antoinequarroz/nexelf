@@ -1,0 +1,23 @@
+{
+  "cli": {
+    "version": ">= 16.20.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "production": {
+      "distribution": "store",
+      "environment": "production",
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://charming-armadillo-24.eu-west-1.convex.cloud",
+        "EXPO_PUBLIC_CONVEX_SITE_URL": "https://charming-armadillo-24.eu-west-1.convex.site"
+      },
+      "ios": {
+        "image": "latest"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

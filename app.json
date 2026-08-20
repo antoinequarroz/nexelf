@@ -39,11 +39,20 @@
       "expo-secure-store",
       "expo-localization",
       "expo-notifications",
-      "@sentry/react-native/expo"
+      "@sentry/react-native/expo",
+      "@sentry/react-native",
+      "expo-image"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "89895b73-fb99-4c66-8c20-7f1b789de9aa"
+      }
+    },
+    "owner": "antoinequarr"
   }
 }
