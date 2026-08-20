@@ -1,4 +1,4 @@
-/** Design tokens — Quiet Command / Next Lime. */
+/** Design tokens — Élan lumineux. */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -6,17 +6,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        canvas: "#090B0F",
-        surface: "#11141A",
-        raised: "#181C23",
-        line: "#282D36",
-        ink: "#F5F7FA",
-        muted: "#A8AFBA",
-        subtle: "#707783",
-        lime: "#C7F36B",
-        "lime-pressed": "#A9D84F",
-        "lime-ink": "#172006",
-        danger: "#FF7A86",
+        canvas: "#FBF8F1",
+        surface: "#FFFFFF",
+        raised: "#F3EFE7",
+        line: "#D9D5CC",
+        ink: "#17233B",
+        muted: "#526078",
+        subtle: "#687386",
+        action: "#31579D",
+        "action-pressed": "#24447E",
+        "action-ink": "#FFFFFF",
+        progress: "#26734A",
+        "progress-pressed": "#1D5A3A",
+        "progress-ink": "#FFFFFF",
+        impulse: "#FBE4D5",
+        reflection: "#ECE7F7",
+        growth: "#E2F0E5",
+        danger: "#B4233C",
+        "danger-ink": "#FFFFFF",
+        // Alias temporaires : la migration des écrans relève de la story 16.
+        lime: "#31579D",
+        "lime-pressed": "#24447E",
+        "lime-ink": "#FFFFFF",
       },
       borderRadius: { sm: 10, DEFAULT: 14, lg: 18, xl: 24 },
       fontFamily: {
