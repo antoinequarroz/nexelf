@@ -24,7 +24,7 @@ export default function Planning() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [preview, setPreview] = useState<ReturnType<typeof composerPlanDeterministe> | null>(null);
-  const [undo, setUndo] = useState<Array<{ id: Id<"actionsQuotidiennes">; ordre: number }> | null>(null);
+  const [undo, setUndo] = useState<{ id: Id<"actionsQuotidiennes">; ordre: number }[] | null>(null);
 
   async function addAction() {
     const duration = Number(draft.duree);
