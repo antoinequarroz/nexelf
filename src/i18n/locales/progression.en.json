@@ -1,0 +1,31 @@
+{
+  "title": "My progress",
+  "description": "A factual look at your week, without scores or judgement.",
+  "loading": "Your indicators will appear before hypotheses.",
+  "week": "From {{start}} to {{end}}",
+  "rawTitle": "This week's facts",
+  "completed": "Completed",
+  "postponed": "Postponed",
+  "abandoned": "Abandoned",
+  "total": "Planned",
+  "goals": "Goals advanced",
+  "steps": "{{count}} goal steps completed",
+  "comparison": "{{label}}: {{current}}, versus {{previous}} the previous week ({{delta}}).",
+  "chartSummary": "Chart summary: {{completed}} actions completed, {{postponed}} postponed and {{abandoned}} abandoned.",
+  "emptyTitle": "A little more data needed",
+  "empty": "Document at least {{count}} days before hypotheses appear. Your raw data remains visible.",
+  "insightsTitle": "Hypotheses to consider",
+  "hypothesis": "Hypothesis",
+  "insights": {
+    "regularite": "Your current organization may be supporting consistency.",
+    "reports": "Postponements may suggest that your plan is a little full.",
+    "objectifs": "Your small steps may be moving more goals forward this week."
+  },
+  "sources": "Source data: {{sources}}",
+  "sourceItem": "{{label}} {{value}}",
+  "false": "That's false",
+  "useless": "Not useful",
+  "feedbackThanks": "Thanks, this hypothesis is now hidden.",
+  "feedbackError": "Your feedback was not saved. The figures remain available.",
+  "retry": "Try again"
+}

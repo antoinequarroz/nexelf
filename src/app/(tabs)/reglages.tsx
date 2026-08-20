@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Card, Header, Screen, Section } from "../../components/ui";
 
 const destinations = [
+  { href: "/progression", title: "progression.title" },
   { href: "/habitudes", title: "navigation.settingsLinks.habits" },
   { href: "/memoire", title: "navigation.settingsLinks.memory" },
   {

@@ -1,0 +1,31 @@
+{
+  "title": "Ma progression",
+  "description": "Un regard factuel sur votre semaine, sans score ni jugement.",
+  "loading": "Vos indicateurs arrivent avant les hypothèses.",
+  "week": "Du {{start}} au {{end}}",
+  "rawTitle": "Les faits de la semaine",
+  "completed": "Terminées",
+  "postponed": "Reportées",
+  "abandoned": "Abandonnées",
+  "total": "Planifiées",
+  "goals": "Objectifs avancés",
+  "steps": "{{count}} étapes d’objectif terminées",
+  "comparison": "{{label}} : {{current}}, contre {{previous}} la semaine précédente ({{delta}}).",
+  "chartSummary": "Résumé du graphique : {{completed}} actions terminées, {{postponed}} reportées et {{abandoned}} abandonnées.",
+  "emptyTitle": "Encore un peu de matière",
+  "empty": "Documentez au moins {{count}} jours pour faire apparaître des hypothèses. Vos données brutes restent visibles.",
+  "insightsTitle": "Hypothèses à considérer",
+  "hypothesis": "Hypothèse",
+  "insights": {
+    "regularite": "Votre organisation actuelle semble favoriser la régularité.",
+    "reports": "Les reports peuvent signaler un planning un peu chargé.",
+    "objectifs": "Vos petites étapes semblent faire avancer davantage d’objectifs cette semaine."
+  },
+  "sources": "Données sources : {{sources}}",
+  "sourceItem": "{{label}} {{value}}",
+  "false": "C’est faux",
+  "useless": "Pas utile",
+  "feedbackThanks": "Merci, cette hypothèse est masquée.",
+  "feedbackError": "Le retour n’a pas été enregistré. Les chiffres restent disponibles.",
+  "retry": "Réessayer"
+}

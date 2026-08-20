@@ -1,0 +1,11 @@
+appId: com.nexelf.app
+---
+- launchApp
+- tapOn: "Réglages"
+- tapOn: "Ma progression"
+- assertVisible: "Les faits de la semaine"
+- assertVisible: "Terminées"
+- assertVisible: "Reportées"
+- assertVisible: "Abandonnées"
+- assertVisible:
+    text: "Hypothèses à considérer|Encore un peu de matière"
