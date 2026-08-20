@@ -102,5 +102,33 @@
       "reviewTitre": "Comment s'est passée ta journée ?",
       "reviewCorps": "Une revue courte suffit pour préparer demain."
     }
+  },
+  "onboarding": {
+    "cap": "Ton prochain chapitre",
+    "progression": "Étape {{current}} sur {{total}}",
+    "continuer": "Continuer",
+    "retour": "Retour",
+    "sauvegarde": "Sauvegarde…",
+    "autoSave": "Ta progression est sauvegardée à chaque étape.",
+    "erreur": "Impossible de sauvegarder. Vérifie ta connexion puis réessaie.",
+    "validerPlan": "Valider ce premier plan",
+    "etapes": {
+      "0": { "titre": "Quelles parties de ta vie comptent maintenant ?", "description": "Choisis au moins un domaine. Tu pourras les ajuster plus tard." },
+      "1": { "titre": "Qui souhaites-tu devenir ?", "description": "Décris une direction qui te ressemble, sans chercher la formule parfaite." },
+      "2": { "titre": "Choisis tes priorités.", "description": "Ajoute entre un et trois objectifs importants pour commencer." },
+      "3": { "titre": "Qu’est-ce qui structure tes journées ?", "description": "Indique les contraintes que ton planning devra respecter." },
+      "4": { "titre": "Quelle est ton énergie habituelle ?", "description": "1 signifie très faible, 5 très élevée. Il n’y a pas de mauvaise réponse." },
+      "5": { "titre": "Comment veux-tu être accompagné ?", "description": "Choisis le ton de ton copilote. Tu gardes toujours le dernier mot." },
+      "6": { "titre": "Construis ton premier plan.", "description": "Ajuste tes premières actions et leur durée avant de les valider." }
+    },
+    "domaines": { "personnel": "Vie personnelle", "professionnel": "Travail", "sante": "Sport et santé", "apprentissage": "Apprentissage", "projets": "Projets" },
+    "contraintes": { "travail": "Horaires de travail", "sommeil": "Sommeil", "famille": "Famille", "transport": "Transports", "autre": "Autre" },
+    "tons": { "doux": "Doux et encourageant", "equilibre": "Calme et équilibré", "direct": "Direct et concis" },
+    "futurLabel": "La personne que tu souhaites devenir",
+    "futurPlaceholder": "Je souhaite devenir une personne qui…",
+    "objectifLabel": "Objectif {{number}}",
+    "objectifPlaceholder": "Par exemple : avancer sur mon projet chaque semaine",
+    "ajouterObjectif": "+ Ajouter un objectif",
+    "plan": { "action": "Action {{number}}", "duree": "Durée (min)", "raison": "Première action choisie pendant l’onboarding" }
   }
 }

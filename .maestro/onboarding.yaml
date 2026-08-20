@@ -1,0 +1,12 @@
+appId: ch.antoinequarroz.nexelf
+---
+- launchApp:
+    clearState: false
+- openLink: nexelf://demarrage
+- assertVisible: 'Quelles parties de ta vie comptent maintenant ?'
+- tapOn: 'Projets'
+- tapOn: 'Continuer'
+- assertVisible: 'Qui souhaites-tu devenir ?'
+- inputText: 'Une personne constante qui avance avec calme.'
+- tapOn: 'Continuer'
+- assertVisible: 'Choisis tes priorités.'

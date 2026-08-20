@@ -102,5 +102,33 @@
       "reviewTitre": "How did your day go?",
       "reviewCorps": "A short review is enough to prepare for tomorrow."
     }
+  },
+  "onboarding": {
+    "cap": "Your next chapter",
+    "progression": "Step {{current}} of {{total}}",
+    "continuer": "Continue",
+    "retour": "Back",
+    "sauvegarde": "Saving…",
+    "autoSave": "Your progress is saved after every step.",
+    "erreur": "Unable to save. Check your connection and try again.",
+    "validerPlan": "Confirm this first plan",
+    "etapes": {
+      "0": { "titre": "Which parts of your life matter now?", "description": "Choose at least one area. You can adjust them later." },
+      "1": { "titre": "Who do you want to become?", "description": "Describe a direction that feels true to you. It does not need to be perfect." },
+      "2": { "titre": "Choose your priorities.", "description": "Add one to three important goals to get started." },
+      "3": { "titre": "What shapes your days?", "description": "Select the constraints your plan needs to respect." },
+      "4": { "titre": "What is your usual energy level?", "description": "1 means very low and 5 very high. There is no wrong answer." },
+      "5": { "titre": "How should Nexelf support you?", "description": "Choose your copilot’s tone. You always have the final say." },
+      "6": { "titre": "Build your first plan.", "description": "Adjust your first actions and their duration before confirming." }
+    },
+    "domaines": { "personnel": "Personal life", "professionnel": "Work", "sante": "Sport and health", "apprentissage": "Learning", "projets": "Projects" },
+    "contraintes": { "travail": "Work schedule", "sommeil": "Sleep", "famille": "Family", "transport": "Commute", "autre": "Other" },
+    "tons": { "doux": "Gentle and encouraging", "equilibre": "Calm and balanced", "direct": "Direct and concise" },
+    "futurLabel": "The person you want to become",
+    "futurPlaceholder": "I want to become someone who…",
+    "objectifLabel": "Goal {{number}}",
+    "objectifPlaceholder": "For example: move my project forward every week",
+    "ajouterObjectif": "+ Add a goal",
+    "plan": { "action": "Action {{number}}", "duree": "Duration (min)", "raison": "First action selected during onboarding" }
   }
 }
