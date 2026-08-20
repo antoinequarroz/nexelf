@@ -1,20 +1,17 @@
 import type { ReactNode } from "react";
 import { router } from "expo-router";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Text } from "react-native";
+import { useTranslation } from "react-i18next";
+import { IconButton } from "./ui/button";
+import { Header } from "./ui/header";
+import { Screen } from "./ui/screen";
 
 export function ProductShell({ title, subtitle, children }: { title: string; subtitle: string; children: ReactNode }) {
+  const { t } = useTranslation();
   return (
-    <ScrollView className="flex-1 bg-canvas" contentContainerClassName="px-6 pb-12 pt-8" keyboardShouldPersistTaps="handled">
-      <View className="mb-7 flex-row items-start">
-        <Pressable accessibilityRole="button" accessibilityLabel="Back" className="mr-4 min-h-12 min-w-12 items-center justify-center rounded border border-line" onPress={() => router.back()}>
-          <Text className="text-xl text-ink">‹</Text>
-        </Pressable>
-        <View className="flex-1">
-          <Text accessibilityRole="header" className="font-display text-3xl text-ink">{title}</Text>
-          <Text className="mt-2 font-body text-sm leading-6 text-muted">{subtitle}</Text>
-        </View>
-      </View>
+    <Screen keyboard>
+      <Header description={subtitle} leading={<IconButton accessibilityLabel={t("onboarding.retour")} onPress={() => router.back()}><Text className="text-xl text-ink">‹</Text></IconButton>} title={title} />
       {children}
-    </ScrollView>
+    </Screen>
   );
 }
