@@ -1,0 +1,41 @@
+{
+  "title": "Help and support",
+  "description": "Find an answer or send a request while limiting shared data.",
+  "search": "Search help",
+  "searchPlaceholder": "Account, data, subscription…",
+  "noResultTitle": "No article found",
+  "noResultBody": "Clear the search or contact support.",
+  "clearSearch": "Clear search",
+  "articlesTitle": "Help centre",
+  "articles": {
+    "accountTitle": "Account and sign-in", "accountBody": "Manage sign-in and account deletion from settings.",
+    "dataTitle": "Data and memory", "dataBody": "You control memory. Review, correct, or delete every memory.",
+    "subscriptionTitle": "Subscription", "subscriptionBody": "Nexelf Pro purchases are managed and restored through the App Store or Google Play.",
+    "aiTitle": "How AI works", "aiBody": "Nexelf suggests, but runs no action and adds nothing to memory without confirmation."
+  },
+  "contactTitle": "Contact support",
+  "reportTitle": "Report this response",
+  "reportHint": "The response content is not attached and this report is not added to memory.",
+  "privacyWarning": "Never share a password, token, payment card, medical data, or identity document.",
+  "category": "Category",
+  "categories": { "compte": "Account", "donnees": "Data", "abonnement": "Subscription", "ia": "AI", "autre": "Other" },
+  "subject": "Subject", "subjectPlaceholder": "A short summary",
+  "message": "Description", "messagePlaceholder": "Describe the issue without sensitive data",
+  "invalidSubject": "Enter between 5 and 120 characters.", "invalidMessage": "Enter between 20 and 2,000 characters.",
+  "draftRestored": "Your private draft was restored on this device.",
+  "diagnosticTitle": "Attach a technical diagnostic",
+  "diagnosticOptional": "Optional and off by default. You can send your request without it.",
+  "diagnosticDetails": "Shared data: Nexelf version, platform, system version, and language. No message, history, contacts, location, photos, tokens, or full logs.",
+  "diagnosticReview": "Diagnostic to send: Nexelf {{appVersion}} · {{platform}} {{systemVersion}} · {{locale}}",
+  "send": "Send request", "sending": "Sending…",
+  "successTitle": "Request received",
+  "successBody": "The request was recorded. This does not confirm that a person has read it yet.",
+  "reference": "Reference: {{reference}} · Status: Received",
+  "newRequest": "New request",
+  "errors": {
+    "generic": "Sending failed. Your draft is kept; check your connection and try again.",
+    "rate": "Too many requests were sent recently. Your draft is kept; try again later.",
+    "forbidden": "Sign in again to contact support. No information about the reported response was revealed."
+  },
+  "reportAction": "Report this response"
+}

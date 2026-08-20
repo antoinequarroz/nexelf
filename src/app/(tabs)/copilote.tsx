@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Switch, Text, View } from "react-native";
+import { Pressable, Switch, Text, View } from "react-native";
+import { router } from "expo-router";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
 import { api } from "../../../convex/_generated/api";
@@ -88,6 +89,7 @@ export default function Copilote() {
               {t("copilote.you")}
             </Text>
             <Text className="mt-2 text-ink">{message.contenu}</Text>
+            {message.role === "assistant" ? <Pressable accessibilityRole="button" className="mt-3 min-h-touch justify-center self-start" onPress={() => router.push({ pathname: "/aide", params: { messageId: message._id } })}><Text className="font-medium text-action">{t("support.reportAction")}</Text></Pressable> : null}
           </Card></View>
         ))}</Section>
       )}

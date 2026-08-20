@@ -1,0 +1,24 @@
+appId: ch.nexelf.app
+---
+- launchApp
+- tapOn: "Réglages"
+- tapOn: "Aide et support"
+- assertVisible: "Centre d’aide"
+- tapOn: "Rechercher dans l’aide"
+- inputText: "introuvable"
+- assertVisible: "Aucun article trouvé"
+- tapOn: "Effacer la recherche"
+- tapOn: "Sujet"
+- inputText: "Question sur mon compte"
+- tapOn: "Description"
+- inputText: "Je souhaite comprendre le fonctionnement de mon compte."
+- back
+- tapOn: "Aide et support"
+- assertVisible: "Votre brouillon privé a été restauré sur cet appareil."
+- assertVisible: "Facultatif et désactivé par défaut. Votre demande peut être envoyée sans diagnostic."
+- tapOn: "Joindre un diagnostic technique"
+- assertVisible: "Diagnostic à envoyer :*"
+- tapOn: "Joindre un diagnostic technique"
+- tapOn: "Envoyer la demande"
+- assertVisible: "Demande reçue"
+- assertVisible: "*Statut : Reçu"

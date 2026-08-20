@@ -332,6 +332,35 @@ export default defineSchema({
     recuLe: v.number(),
   }).index("by_evenement", ["evenementId"]),
 
+  demandesSupport: defineTable({
+    profilId: v.id("profils"),
+    type: v.union(v.literal("contact"), v.literal("signalement")),
+    categorie: v.union(
+      v.literal("compte"),
+      v.literal("donnees"),
+      v.literal("abonnement"),
+      v.literal("ia"),
+      v.literal("autre"),
+    ),
+    sujet: v.string(),
+    message: v.string(),
+    operationId: v.string(),
+    messageId: v.optional(v.id("messagesConversation")),
+    diagnostic: v.optional(v.object({
+      appVersion: v.string(),
+      platform: v.union(v.literal("ios"), v.literal("android"), v.literal("web"), v.literal("unknown")),
+      systemVersion: v.string(),
+      locale: v.string(),
+    })),
+    consentementDiagnostic: v.boolean(),
+    reference: v.string(),
+    statut: v.literal("recu"),
+    creeLe: v.number(),
+  })
+    .index("by_profil_and_created", ["profilId", "creeLe"])
+    .index("by_profil_and_operation", ["profilId", "operationId"])
+    .index("by_reference", ["reference"]),
+
   journal: defineTable({
     profilId: v.id("profils"),
     action: v.string(),

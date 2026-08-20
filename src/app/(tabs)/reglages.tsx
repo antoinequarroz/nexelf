@@ -11,6 +11,7 @@ const destinations = [
     href: "/reglages-notifications",
     title: "navigation.settingsLinks.notifications",
   },
+  { href: "/aide", title: "support.title" },
 ] as const;
 
 export default function Reglages() {

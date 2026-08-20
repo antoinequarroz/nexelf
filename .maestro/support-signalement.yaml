@@ -1,0 +1,16 @@
+appId: ch.nexelf.app
+---
+- launchApp
+- tapOn: "Copilote"
+- runFlow:
+    when:
+      visible: "Signaler cette réponse"
+    commands:
+      - tapOn: "Signaler cette réponse"
+      - assertVisible: "Le contenu de la réponse n’est pas joint et ce signalement n’est pas ajouté à la mémoire."
+      - tapOn: "Sujet"
+      - inputText: "Réponse problématique"
+      - tapOn: "Description"
+      - inputText: "Cette réponse semble incorrecte et mérite une vérification."
+      - tapOn: "Envoyer la demande"
+      - assertVisible: "Demande reçue"
