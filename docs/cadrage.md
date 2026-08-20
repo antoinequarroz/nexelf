@@ -4,7 +4,7 @@
 
 Nexelf est un copilote personnel IA mobile qui aide chaque utilisateur à devenir progressivement la version de lui-même qu'il souhaite atteindre.
 
-**Promesse :** *Become your next self.*
+**Promesse :** _Become your next self._
 
 ## Utilisateur et contexte
 
