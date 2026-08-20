@@ -210,7 +210,10 @@
       "pause": "Pause",
       "resume": "Resume",
       "archive": "Archive",
-      "delete": "Delete"
+      "delete": "Delete",
+      "show": "Show actions",
+      "hide": "Hide actions",
+      "group": "Goal actions"
     },
     "empty": {
       "title": "Choose your first direction",
@@ -224,7 +227,8 @@
     "deleteConfirm": "Delete this goal? You can undo it immediately afterwards.",
     "cancel": "Cancel",
     "confirm": "Confirm deletion",
-    "undo": "Undo last deletion"
+    "undo": "Restore",
+    "undoAvailable": "The goal was deleted."
   },
   "planning": {
     "title": "Today's plan",

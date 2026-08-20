@@ -23,6 +23,14 @@ describe("secondary mutation robustness", () => {
     expect(goals.indexOf("await restore")).toBeLessThan(goals.lastIndexOf("setDeleted(null)"));
   });
 
+  it("keeps the goal editor and secondary actions collapsed by default", () => {
+    const goals = source("src/app/(tabs)/objectifs.tsx");
+    expect(goals).toContain("useState(false)");
+    expect(goals).toContain("expandedActions");
+    expect(goals).toContain('"goals.actions.show"');
+    expect(goals).toContain("!formOpen && (goals === undefined");
+  });
+
   it("only clears habit drafts inside the protected mutation", () => {
     const habits = source("src/app/habitudes.tsx");
     expect(habits.indexOf("await create(values)")).toBeLessThan(habits.indexOf('setName("")'));

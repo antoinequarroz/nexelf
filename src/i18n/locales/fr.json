@@ -210,7 +210,10 @@
       "pause": "Mettre en pause",
       "resume": "Reprendre",
       "archive": "Archiver",
-      "delete": "Supprimer"
+      "delete": "Supprimer",
+      "show": "Afficher les actions",
+      "hide": "Masquer les actions",
+      "group": "Actions de l’objectif"
     },
     "empty": {
       "title": "Choisis une première direction",
@@ -224,7 +227,8 @@
     "deleteConfirm": "Supprimer cet objectif ? Cette action pourra être annulée juste après.",
     "cancel": "Annuler",
     "confirm": "Confirmer la suppression",
-    "undo": "Annuler la dernière suppression"
+    "undo": "Restaurer",
+    "undoAvailable": "L’objectif a été supprimé."
   },
   "planning": {
     "title": "Planning du jour",
