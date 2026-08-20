@@ -1,0 +1,5 @@
+appId: com.nexelf.app
+---
+- openLink: "nexelf://memoire"
+- assertVisible: "Mémoire"
+- assertVisible: "Nexelf ne mémorise jamais une information silencieusement."

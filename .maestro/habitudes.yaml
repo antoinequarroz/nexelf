@@ -1,0 +1,5 @@
+appId: com.nexelf.app
+---
+- openLink: "nexelf://habitudes"
+- assertVisible: "Habitudes et routines"
+- assertVisible: "Nouvelle habitude"

@@ -1,0 +1,7 @@
+appId: com.nexelf.app
+---
+- openLink: "nexelf://copilote"
+- assertVisible: "Mode manuel"
+- tapOn: "Message au copilote"
+- inputText: "Ma journee a change"
+- assertVisible: "Enregistrer le message"
