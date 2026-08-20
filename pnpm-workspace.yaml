@@ -4,3 +4,6 @@ allowBuilds:
   '@sentry/cli': true
   esbuild: false
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - expo-constants@57.0.13
+  - expo-notifications@57.0.13

@@ -47,15 +47,60 @@
   },
   "auth": {
     "connexion": "Connexion",
+    "connexionTitre": "Bon retour.",
+    "connexionDescription": "Retrouve ton cap et reprends exactement là où tu t'étais arrêté.",
     "seConnecter": "Se connecter",
+    "connexionEnCours": "Connexion…",
+    "inscriptionTitre": "Deviens ton prochain toi.",
+    "inscriptionDescription": "Crée ton espace personnel. Nexelf propose, tu gardes le contrôle.",
+    "nom": "Prénom ou nom",
     "seDeconnecter": "Se déconnecter",
     "email": "Adresse e-mail",
     "motdepasse": "Mot de passe",
+    "motDePasseAide": "8 caractères minimum.",
+    "motDePasseOublie": "Mot de passe oublié ?",
+    "pasDeCompte": "Pas encore de compte ?",
+    "creerCompte": "Créer un compte",
+    "creerMonCompte": "Créer mon compte",
+    "creationEnCours": "Création…",
+    "dejaUnCompte": "Déjà un compte ?",
+    "oubliTitre": "Réinitialise ton mot de passe.",
+    "oubliDescription": "Indique ton adresse e-mail. Nous t'enverrons un lien sécurisé.",
+    "envoyerLien": "Envoyer le lien",
+    "envoiEnCours": "Envoi…",
+    "lienEnvoye": "Si un compte correspond à cette adresse, un lien vient d'être envoyé.",
+    "retourConnexion": "Retour à la connexion",
+    "erreurs": {
+      "champsRequis": "Complète tous les champs requis.",
+      "identifiants": "Adresse e-mail ou mot de passe incorrect.",
+      "motDePasseCourt": "Choisis un mot de passe d'au moins 8 caractères.",
+      "inscription": "Impossible de créer le compte. Cette adresse est peut-être déjà utilisée.",
+      "reinitialisation": "Impossible d'envoyer le lien pour le moment.",
+      "reseau": "Connexion impossible. Vérifie ton réseau puis réessaie."
+    },
     "supprimerCompte": "Supprimer mon compte"
   },
   "abonnement": {
     "titre": "Abonnement",
     "gerer": "Gérer mon abonnement",
     "restaurer": "Restaurer mes achats"
+  },
+  "notifications": {
+    "titre": "Notifications",
+    "description": "Choisis les rappels qui t'aident, sans bruit inutile.",
+    "briefing": { "titre": "Briefing du matin", "description": "Ton cap et tes priorités à 07:30." },
+    "review": { "titre": "Revue du soir", "description": "Un rappel doux à 20:30." },
+    "priorite": { "titre": "Priorité planifiée", "description": "Un rappel facultatif avant une priorité." },
+    "limite": "Maximum trois notifications locales par jour. Aucun badge permanent.",
+    "enregistrer": "Enregistrer les réglages",
+    "enregistrement": "Enregistrement…",
+    "succes": "Réglages enregistrés.",
+    "erreur": "Impossible d'enregistrer les rappels.",
+    "contenu": {
+      "briefingTitre": "Ton briefing est prêt",
+      "briefingCorps": "Prends un instant pour choisir ton cap du jour.",
+      "reviewTitre": "Comment s'est passée ta journée ?",
+      "reviewCorps": "Une revue courte suffit pour préparer demain."
+    }
   }
 }

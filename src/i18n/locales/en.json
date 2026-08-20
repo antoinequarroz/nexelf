@@ -47,15 +47,60 @@
   },
   "auth": {
     "connexion": "Sign in",
+    "connexionTitre": "Welcome back.",
+    "connexionDescription": "Find your direction and pick up exactly where you left off.",
     "seConnecter": "Sign in",
+    "connexionEnCours": "Signing in…",
+    "inscriptionTitre": "Become your next self.",
+    "inscriptionDescription": "Create your personal space. Nexelf suggests, you stay in control.",
+    "nom": "First or full name",
     "seDeconnecter": "Sign out",
     "email": "Email address",
     "motdepasse": "Password",
+    "motDePasseAide": "At least 8 characters.",
+    "motDePasseOublie": "Forgot your password?",
+    "pasDeCompte": "New to Nexelf?",
+    "creerCompte": "Create an account",
+    "creerMonCompte": "Create my account",
+    "creationEnCours": "Creating…",
+    "dejaUnCompte": "Already have an account?",
+    "oubliTitre": "Reset your password.",
+    "oubliDescription": "Enter your email address. We'll send you a secure link.",
+    "envoyerLien": "Send reset link",
+    "envoiEnCours": "Sending…",
+    "lienEnvoye": "If an account matches this address, a reset link has just been sent.",
+    "retourConnexion": "Back to sign in",
+    "erreurs": {
+      "champsRequis": "Complete all required fields.",
+      "identifiants": "Incorrect email address or password.",
+      "motDePasseCourt": "Choose a password with at least 8 characters.",
+      "inscription": "We couldn't create the account. This address may already be in use.",
+      "reinitialisation": "We couldn't send the link right now.",
+      "reseau": "Unable to connect. Check your network and try again."
+    },
     "supprimerCompte": "Delete my account"
   },
   "abonnement": {
     "titre": "Subscription",
     "gerer": "Manage subscription",
     "restaurer": "Restore purchases"
+  },
+  "notifications": {
+    "titre": "Notifications",
+    "description": "Choose the reminders that help, without unnecessary noise.",
+    "briefing": { "titre": "Morning briefing", "description": "Your direction and priorities at 7:30 AM." },
+    "review": { "titre": "Evening review", "description": "A gentle reminder at 8:30 PM." },
+    "priorite": { "titre": "Scheduled priority", "description": "An optional reminder before a priority." },
+    "limite": "Up to three local notifications per day. No permanent badge.",
+    "enregistrer": "Save settings",
+    "enregistrement": "Saving…",
+    "succes": "Settings saved.",
+    "erreur": "Unable to save reminders.",
+    "contenu": {
+      "briefingTitre": "Your briefing is ready",
+      "briefingCorps": "Take a moment to choose today's direction.",
+      "reviewTitre": "How did your day go?",
+      "reviewCorps": "A short review is enough to prepare for tomorrow."
+    }
   }
 }
