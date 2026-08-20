@@ -1,0 +1,10 @@
+appId: ch.antoinequarroz.nexelf
+---
+- launchApp:
+    clearState: true
+- openLink: nexelf://connexion
+- assertVisible: 'Bon retour.'
+- tapOn: 'Se connecter'
+- assertVisible: 'Complète tous les champs requis.'
+- tapOn: 'Créer un compte'
+- assertVisible: 'Deviens ton prochain toi.'

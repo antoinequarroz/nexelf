@@ -1,0 +1,10 @@
+appId: ch.antoinequarroz.nexelf
+---
+- launchApp:
+    clearState: true
+- openLink: nexelf://mot-de-passe-oublie
+- assertVisible: 'Réinitialise ton mot de passe.'
+- tapOn: 'Envoyer le lien'
+- assertVisible: 'Complète tous les champs requis.'
+- tapOn: 'Retour à la connexion'
+- assertVisible: 'Bon retour.'
