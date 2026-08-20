@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
-import { api } from "../../convex/_generated/api";
-import type { Id } from "../../convex/_generated/dataModel";
-import { authClient } from "../lib/auth-client";
-import { ProductShell } from "../components/product-shell";
+import { api } from "../../../convex/_generated/api";
+import type { Id } from "../../../convex/_generated/dataModel";
+import { authClient } from "../../lib/auth-client";
+import { ProductShell } from "../../components/product-shell";
 
 type Horizon = "court" | "moyen" | "long";
 type Priorite = "basse" | "normale" | "haute";

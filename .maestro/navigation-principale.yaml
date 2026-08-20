@@ -1,0 +1,16 @@
+appId: ch.antoinequarroz.nexelf
+---
+- launchApp
+- assertVisible: "Aujourd’hui"
+- tapOn: "Trajectoire"
+- assertVisible: "Mes objectifs"
+- tapOn: "Copilote"
+- assertVisible: "Dépose ton contexte sans perdre le contrôle de ta journée."
+- tapOn: "Réglages"
+- assertVisible: "Habitudes et routines"
+- tapOn: "Notifications"
+- assertVisible: "Choisis les rappels qui t'aident, sans bruit inutile."
+- back
+- assertVisible: "Réglages"
+- openLink: "nexelf:///chemin-inconnu"
+- assertVisible: "Aujourd’hui"

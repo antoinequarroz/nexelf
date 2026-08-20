@@ -1,5 +1,17 @@
 {
   "app": { "nom": "Nexelf" },
+  "navigation": {
+    "today": "Aujourd’hui",
+    "trajectory": "Trajectoire",
+    "copilot": "Copilote",
+    "settings": "Réglages",
+    "settingsDescription": "Ajuste ton rythme, ta mémoire et les rappels de Nexelf.",
+    "settingsLinks": {
+      "habits": "Habitudes et routines",
+      "memory": "Mémoire",
+      "notifications": "Notifications"
+    }
+  },
   "briefing": {
     "date": "Mardi 19 août",
     "salutation": "Bonjour, Antoine.",

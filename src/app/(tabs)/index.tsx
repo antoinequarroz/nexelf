@@ -3,8 +3,8 @@ import { router } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
-import { api } from "../../convex/_generated/api";
-import { dateLocale, dateLocaleConvex, detailAction } from "../lib/rituel";
+import { api } from "../../../convex/_generated/api";
+import { dateLocale, dateLocaleConvex, detailAction } from "../../lib/rituel";
 
 export default function Accueil() {
   const { t, i18n } = useTranslation();

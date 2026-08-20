@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
-import { api } from "../../convex/_generated/api";
-import type { Id } from "../../convex/_generated/dataModel";
-import { QuietScreen } from "../components/quiet-screen";
-import { Chargement } from "../components/etat";
+import { api } from "../../../convex/_generated/api";
+import type { Id } from "../../../convex/_generated/dataModel";
+import { QuietScreen } from "../../components/quiet-screen";
+import { Chargement } from "../../components/etat";
 
 export default function Copilote() {
   const { t } = useTranslation();

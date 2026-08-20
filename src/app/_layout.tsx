@@ -78,7 +78,7 @@ function RootLayout() {
     // entre le plugin Expo et better-auth. Sans effet à l'exécution.
     <ConvexBetterAuthProvider client={convex} authClient={authClient as never}>
       <NavigationNotifications />
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <Stack
         screenOptions={{
           headerShown: false,
@@ -86,7 +86,11 @@ function RootLayout() {
           headerTintColor: theme.text,
           contentStyle: { backgroundColor: theme.background },
         }}
-      />
+      >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+      </Stack>
     </ConvexBetterAuthProvider>
   );
 }
