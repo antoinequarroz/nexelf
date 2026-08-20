@@ -53,7 +53,7 @@ export default function Accueil() {
   const terminees = briefing.actions.filter((action) => action.statut === "terminee").length;
   return (
     <Screen>
-      <Header eyebrow={dateLocale(i18n.language)} title={t("rituel.bonjour")} />
+      <Header metadata={dateLocale(i18n.language)} title={t("rituel.bonjour")} />
       <View className="mb-8"><ManifestImage aboveFold assetId="illustration-placeholder-portrait-01" /></View>
       <Section title={t("rituel.cap")}>
       <Card tone="reflection">

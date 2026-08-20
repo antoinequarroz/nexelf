@@ -31,10 +31,6 @@ module.exports = {
         "danger-ink": "#FFFFFF",
         focus: "#31579D",
         disabled: "#A8AFBA",
-        // Alias temporaires : la migration des écrans relève de la story 16.
-        lime: "#31579D",
-        "lime-pressed": "#24447E",
-        "lime-ink": "#FFFFFF",
       },
       borderRadius: { sm: 10, DEFAULT: 14, lg: 18, xl: 24 },
       fontFamily: {

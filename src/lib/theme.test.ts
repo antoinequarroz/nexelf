@@ -37,10 +37,4 @@ describe("Élan lumineux theme", () => {
   ])("keeps %s at WCAG AA contrast", (_name, foreground, background) => {
     expect(contrast(foreground, background)).toBeGreaterThanOrEqual(4.5);
   });
-
-  it("keeps compatibility aliases aligned during the screen migration", () => {
-    expect(theme.lime).toBe(theme.action);
-    expect(theme.limePressed).toBe(theme.actionPressed);
-    expect(theme.limeInk).toBe(theme.onAction);
-  });
 });

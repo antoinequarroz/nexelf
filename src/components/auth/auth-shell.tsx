@@ -13,7 +13,7 @@ export function AuthShell({ title, description, children }: AuthShellProps) {
 
   return (
     <Screen centered keyboard contentClassName="py-12">
-        <Header description={description} eyebrow={t("app.nom")} title={title} />
+        <Header description={description} metadata={t("app.nom")} title={title} />
         {children}
     </Screen>
   );

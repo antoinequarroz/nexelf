@@ -26,8 +26,4 @@ export const theme = {
   onDanger: "#FFFFFF",
   focus: "#31579D",
   disabled: "#A8AFBA",
-  // Alias temporaires : les écrans existants migreront avec la story 16.
-  lime: "#31579D",
-  limePressed: "#24447E",
-  limeInk: "#FFFFFF",
 } as const;
