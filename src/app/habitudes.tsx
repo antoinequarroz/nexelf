@@ -33,7 +33,24 @@ export default function Habitudes() {
   const [routineName, setRoutineName] = useState("");
   const [selected, setSelected] = useState<Id<"habitudes">[]>([]);
   const [editing, setEditing] = useState<Id<"habitudes">>();
+  const [actionBusy, setActionBusy] = useState("");
+  const [actionError, setActionError] = useState(false);
+  const [retryAction, setRetryAction] = useState<(() => void) | null>(null);
   const active = habits?.filter((habit) => habit.statut !== "archivee") ?? [];
+
+  async function performAction(key: string, operation: () => Promise<unknown>) {
+    setActionBusy(key);
+    setActionError(false);
+    try {
+      await operation();
+      setRetryAction(null);
+    } catch {
+      setActionError(true);
+      setRetryAction(() => () => void performAction(key, operation));
+    } finally {
+      setActionBusy("");
+    }
+  }
 
   async function addHabit() {
     if (!name.trim() || !days.length) return;
@@ -42,12 +59,15 @@ export default function Habitudes() {
       jours: normaliserJours(days),
       moment: moment.trim() || undefined,
     };
-    if (editing) await update({ habitudeId: editing, ...values });
-    else await create(values);
-    setName("");
-    setMoment("");
-    setDays([]);
-    setEditing(undefined);
+    const key = editing ? `edit-${editing}` : "create";
+    await performAction(key, async () => {
+      if (editing) await update({ habitudeId: editing, ...values });
+      else await create(values);
+      setName("");
+      setMoment("");
+      setDays([]);
+      setEditing(undefined);
+    });
   }
   function toggleDay(day: number) {
     setDays((value) =>
@@ -74,6 +94,7 @@ export default function Habitudes() {
       title={t("habits.title")}
       description={t("habits.description")}
     >
+      {actionError ? <View className="mb-5"><Feedback actionLabel={t("etats.erreur.reessayer")} message={t("etats.erreur.corps")} onAction={retryAction ?? undefined} tone="danger" /></View> : null}
       <Section><Card tone="growth">
         <Text className="font-medium text-ink">{t("habits.createTitle")}</Text>
         <View className="mt-4"><Field
@@ -101,6 +122,8 @@ export default function Habitudes() {
         <View className="mt-4"><Button
           disabled={!name.trim() || !days.length}
           label={editing ? t("memory.save") : t("habits.add")}
+          loading={actionBusy === (editing ? `edit-${editing}` : "create")}
+          loadingLabel={t("onboarding.sauvegarde")}
           onPress={addHabit}
         /></View>
       </Card></Section>
@@ -127,40 +150,46 @@ export default function Habitudes() {
                 <View className="mt-3 flex-row flex-wrap">
                   <Pressable
                     accessibilityRole="button"
+                    accessibilityState={{ busy: actionBusy === `occurrence-${habit._id}`, disabled: Boolean(actionBusy) }}
+                    disabled={Boolean(actionBusy)}
                     className="mr-4 min-h-touch justify-center"
-                    onPress={() =>
+                    onPress={() => void performAction(`occurrence-${habit._id}`, () =>
                       occurrence({
                         habitudeId: habit._id,
                         date: today,
                         statut: "terminee",
-                      })
+                      }))
                     }
                   >
                     <Text className="text-progress">{t("habits.complete")}</Text>
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
+                    accessibilityState={{ busy: actionBusy === `occurrence-${habit._id}`, disabled: Boolean(actionBusy) }}
+                    disabled={Boolean(actionBusy)}
                     className="mr-4 min-h-touch justify-center"
-                    onPress={() =>
+                    onPress={() => void performAction(`occurrence-${habit._id}`, () =>
                       occurrence({
                         habitudeId: habit._id,
                         date: today,
                         statut: "ignoree",
-                      })
+                      }))
                     }
                   >
                     <Text className="text-muted">{t("habits.skip")}</Text>
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
+                    accessibilityState={{ busy: actionBusy === `occurrence-${habit._id}`, disabled: Boolean(actionBusy) }}
+                    disabled={Boolean(actionBusy)}
                     className="min-h-touch justify-center"
-                    onPress={() =>
+                    onPress={() => void performAction(`occurrence-${habit._id}`, () =>
                       occurrence({
                         habitudeId: habit._id,
                         date: today,
                         statut: "reportee",
                         reporteeAu: lendemain(today),
-                      })
+                      }))
                     }
                   >
                     <Text className="text-muted">{t("habits.postpone")}</Text>
@@ -182,12 +211,14 @@ export default function Habitudes() {
                 </Pressable>
                 <Pressable
                   accessibilityRole="button"
+                  accessibilityState={{ busy: actionBusy === `status-${habit._id}`, disabled: Boolean(actionBusy) }}
+                  disabled={Boolean(actionBusy)}
                   className="mr-5 min-h-touch justify-center"
-                  onPress={() =>
+                  onPress={() => void performAction(`status-${habit._id}`, () =>
                     status({
                       habitudeId: habit._id,
                       statut: habit.statut === "pause" ? "active" : "pause",
-                    })
+                    }))
                   }
                 >
                   <Text className="text-subtle">
@@ -198,10 +229,10 @@ export default function Habitudes() {
                 </Pressable>
                 <Pressable
                   accessibilityRole="button"
+                  accessibilityState={{ busy: actionBusy === `archive-${habit._id}`, disabled: Boolean(actionBusy) }}
+                  disabled={Boolean(actionBusy)}
                   className="min-h-touch justify-center"
-                  onPress={() =>
-                    status({ habitudeId: habit._id, statut: "archivee" })
-                  }
+                  onPress={() => void performAction(`archive-${habit._id}`, () => status({ habitudeId: habit._id, statut: "archivee" }))}
                 >
                   <Text className="text-danger">{t("habits.archive")}</Text>
                 </Pressable>
@@ -242,12 +273,14 @@ export default function Habitudes() {
           <Button
             disabled={!routineName.trim() || !selected.length}
             label={t("habits.createRoutine")}
+            loading={actionBusy === "routine"}
+            loadingLabel={t("onboarding.sauvegarde")}
             variant="secondary"
-            onPress={async () => {
+            onPress={() => void performAction("routine", async () => {
               await createRoutine({ nom: routineName, habitudeIds: selected });
               setRoutineName("");
               setSelected([]);
-            }}
+            })}
           />
         </Card></View>
       ) : null}

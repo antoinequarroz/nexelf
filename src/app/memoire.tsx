@@ -20,10 +20,27 @@ export default function Memoire() {
   const updatePreferences = useMutation(api.profils.mettreAJourPreferences);
   const [editing, setEditing] = useState<Id<"souvenirs">>();
   const [content, setContent] = useState("");
+  const [actionBusy, setActionBusy] = useState("");
+  const [actionError, setActionError] = useState(false);
+  const [retryAction, setRetryAction] = useState<(() => void) | null>(null);
   const formatDate = (timestamp: number) =>
     new Intl.DateTimeFormat(i18n.language, { dateStyle: "medium" }).format(
       timestamp,
     );
+
+  async function performAction(key: string, operation: () => Promise<unknown>) {
+    setActionBusy(key);
+    setActionError(false);
+    try {
+      await operation();
+      setRetryAction(null);
+    } catch {
+      setActionError(true);
+      setRetryAction(() => () => void performAction(key, operation));
+    } finally {
+      setActionBusy("");
+    }
+  }
 
   function confirmDelete(id: Id<"souvenirs">) {
     Alert.alert(t("memory.deleteTitle"), t("memory.deleteBody"), [
@@ -31,7 +48,7 @@ export default function Memoire() {
       {
         text: t("memory.delete"),
         style: "destructive",
-        onPress: () => void remove({ souvenirId: id }),
+        onPress: () => void performAction(`delete-${id}`, () => remove({ souvenirId: id })),
       },
     ]);
   }
@@ -48,6 +65,7 @@ export default function Memoire() {
       title={t("memory.title")}
       description={t("memory.description")}
     >
+      {actionError ? <View className="mb-5"><Feedback actionLabel={t("etats.erreur.reessayer")} message={t("etats.erreur.corps")} onAction={retryAction ?? undefined} tone="danger" /></View> : null}
       <Section><Card tone="growth"><View className="flex-row items-center justify-between gap-4">
         <View className="mr-4 flex-1">
           <Text className="font-medium text-ink">{t("memory.enabled")}</Text>
@@ -57,10 +75,11 @@ export default function Memoire() {
         </View>
         <Switch
           accessibilityLabel={t("memory.enabled")}
+          accessibilityState={{ busy: actionBusy === "preferences", disabled: !profile || actionBusy === "preferences" }}
           value={profile?.memoireActive ?? false}
-          disabled={!profile}
+          disabled={!profile || actionBusy === "preferences"}
           onValueChange={(memoireActive) => {
-            void updatePreferences({ memoireActive });
+            void performAction("preferences", () => updatePreferences({ memoireActive }));
           }}
           trackColor={{ false: theme.border, true: theme.progress }}
           thumbColor={theme.surface}
@@ -83,15 +102,11 @@ export default function Memoire() {
               })}
             </Text>
             <View className="mt-4 gap-2">
-              <Button label={t("memory.confirm")}
-                onPress={() =>
-                  decide({ propositionId: proposal._id, accepter: true })
-                }
+              <Button disabled={Boolean(actionBusy)} label={t("memory.confirm")} loading={actionBusy === `confirm-${proposal._id}`} loadingLabel={t("onboarding.sauvegarde")}
+                onPress={() => void performAction(`confirm-${proposal._id}`, () => decide({ propositionId: proposal._id, accepter: true }))}
               />
-              <Button label={t("memory.reject")} variant="secondary"
-                onPress={() =>
-                  decide({ propositionId: proposal._id, accepter: false })
-                }
+              <Button disabled={Boolean(actionBusy)} label={t("memory.reject")} loading={actionBusy === `reject-${proposal._id}`} loadingLabel={t("onboarding.sauvegarde")} variant="secondary"
+                onPress={() => void performAction(`reject-${proposal._id}`, () => decide({ propositionId: proposal._id, accepter: false }))}
               />
             </View>
           </Card></View>
@@ -123,21 +138,21 @@ export default function Memoire() {
             </Text>
             <View className="mt-4 gap-2">
               {editing === memory._id ? (
-                <Button label={t("memory.save")} variant="secondary"
-                  onPress={async () => {
+                <Button disabled={Boolean(actionBusy)} label={t("memory.save")} loading={actionBusy === `correct-${memory._id}`} loadingLabel={t("onboarding.sauvegarde")} variant="secondary"
+                  onPress={() => void performAction(`correct-${memory._id}`, async () => {
                     await correct({ souvenirId: memory._id, contenu: content });
                     setEditing(undefined);
-                  }}
+                  })}
                 />
               ) : (
-                <Button label={t("memory.edit")} variant="secondary"
+                <Button disabled={Boolean(actionBusy)} label={t("memory.edit")} variant="secondary"
                   onPress={() => {
                     setEditing(memory._id);
                     setContent(memory.contenu);
                   }}
                 />
               )}
-              <Button label={t("memory.delete")} variant="destructive" onPress={() => confirmDelete(memory._id)} />
+              <Button disabled={Boolean(actionBusy)} label={t("memory.delete")} loading={actionBusy === `delete-${memory._id}`} loadingLabel={t("onboarding.sauvegarde")} variant="destructive" onPress={() => confirmDelete(memory._id)} />
             </View>
           </Card></View>
         ))

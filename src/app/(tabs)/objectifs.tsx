@@ -28,6 +28,23 @@ export default function Objectifs() {
   const [pendingDelete, setPendingDelete] = useState<Id<"objectifs"> | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [actionBusy, setActionBusy] = useState("");
+  const [actionError, setActionError] = useState(false);
+  const [retryAction, setRetryAction] = useState<(() => void) | null>(null);
+
+  async function performAction(key: string, operation: () => Promise<unknown>) {
+    setActionBusy(key);
+    setActionError(false);
+    try {
+      await operation();
+      setRetryAction(null);
+    } catch {
+      setActionError(true);
+      setRetryAction(() => () => void performAction(key, operation));
+    } finally {
+      setActionBusy("");
+    }
+  }
 
   async function submit() {
     if (!draft.titre.trim()) return setError(t("goals.errors.title"));
@@ -52,6 +69,7 @@ export default function Objectifs() {
   return (
     <ProductShell title={t("goals.title")} subtitle={t("goals.subtitle")}>
       <View className="mb-8"><ManifestImage aboveFold assetId="illustration-placeholder-square-01" /></View>
+      {actionError ? <View className="mb-5"><Feedback actionLabel={t("etats.erreur.reessayer")} message={t("etats.erreur.corps")} onAction={retryAction ?? undefined} tone="danger" /></View> : null}
       <Section>
         <Card tone="reflection">
           <Text className="mb-4 font-semibold text-lg text-ink">{t(editing ? "goals.form.edit" : "goals.form.create")}</Text>
@@ -71,15 +89,15 @@ export default function Objectifs() {
           <Text className="mt-3 font-body text-sm leading-5 text-muted">{goal.motivation || t("goals.noMotivation")}</Text>
           <Text className="mt-2 font-body text-xs text-subtle">{t(`goals.status.${goal.statut}`)} · {t(`goals.priority.${goal.priorite}`)}</Text>
           <View className="mt-5 gap-2">
-            <Button label={t("goals.actions.edit")} variant="secondary" onPress={() => { setEditing(goal._id); setDraft({ titre: goal.titre, motivation: goal.motivation, horizon: goal.horizon, priorite: goal.priorite, echeance: goal.echeance ?? "" }); }} />
-            <Button label={t(goal.statut === "pause" ? "goals.actions.resume" : "goals.actions.pause")} variant="ghost" onPress={() => changeStatus({ objectifId: goal._id, statut: goal.statut === "pause" ? "actif" : "pause" })} />
-            <Button label={t("goals.actions.archive")} variant="ghost" onPress={() => changeStatus({ objectifId: goal._id, statut: "archive" })} />
-            <Button label={t("goals.actions.delete")} variant="destructive" onPress={() => setPendingDelete(goal._id)} />
+            <Button disabled={Boolean(actionBusy)} label={t("goals.actions.edit")} variant="secondary" onPress={() => { setEditing(goal._id); setDraft({ titre: goal.titre, motivation: goal.motivation, horizon: goal.horizon, priorite: goal.priorite, echeance: goal.echeance ?? "" }); }} />
+            <Button disabled={Boolean(actionBusy)} label={t(goal.statut === "pause" ? "goals.actions.resume" : "goals.actions.pause")} loading={actionBusy === `status-${goal._id}`} loadingLabel={t("goals.saving")} variant="ghost" onPress={() => void performAction(`status-${goal._id}`, () => changeStatus({ objectifId: goal._id, statut: goal.statut === "pause" ? "actif" : "pause" }))} />
+            <Button disabled={Boolean(actionBusy)} label={t("goals.actions.archive")} loading={actionBusy === `archive-${goal._id}`} loadingLabel={t("goals.saving")} variant="ghost" onPress={() => void performAction(`archive-${goal._id}`, () => changeStatus({ objectifId: goal._id, statut: "archive" }))} />
+            <Button disabled={Boolean(actionBusy)} label={t("goals.actions.delete")} variant="destructive" onPress={() => setPendingDelete(goal._id)} />
           </View>
-          {pendingDelete === goal._id ? <View className="mt-4"><Feedback message={t("goals.deleteConfirm")} tone="danger" /><View className="mt-3 gap-2"><Button label={t("goals.cancel")} variant="secondary" onPress={() => setPendingDelete(null)} /><Button label={t("goals.confirm")} variant="destructive" onPress={async () => { await remove({ objectifId: goal._id }); setDeleted(goal._id); setPendingDelete(null); }} /></View></View> : null}
+          {pendingDelete === goal._id ? <View className="mt-4"><Feedback message={t("goals.deleteConfirm")} tone="danger" /><View className="mt-3 gap-2"><Button disabled={Boolean(actionBusy)} label={t("goals.cancel")} variant="secondary" onPress={() => setPendingDelete(null)} /><Button disabled={Boolean(actionBusy)} label={t("goals.confirm")} loading={actionBusy === `delete-${goal._id}`} loadingLabel={t("goals.saving")} variant="destructive" onPress={() => void performAction(`delete-${goal._id}`, async () => { await remove({ objectifId: goal._id }); setDeleted(goal._id); setPendingDelete(null); })} /></View></View> : null}
         </Card></View>
       ))}
-      {deleted ? <Button label={t("goals.undo")} variant="secondary" onPress={async () => { await restore({ objectifId: deleted }); setDeleted(null); }} /> : null}
+      {deleted ? <Button label={t("goals.undo")} loading={actionBusy === `restore-${deleted}`} loadingLabel={t("goals.saving")} variant="secondary" onPress={() => void performAction(`restore-${deleted}`, async () => { await restore({ objectifId: deleted }); setDeleted(null); })} /> : null}
     </ProductShell>
   );
 }
