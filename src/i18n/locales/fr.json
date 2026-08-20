@@ -57,7 +57,10 @@
     "accepter": "Accepter ce plan",
     "planAccepte": "Plan accepté. Tu peux encore le modifier.",
     "adapter": "Adapter ma journée",
-    "ouvrirRevue": "Ouvrir la revue du soir"
+    "ouvrirRevue": "Ouvrir la revue du soir",
+    "routines": "Routines",
+    "contraintes": "Contraintes",
+    "rien": "Aucune aujourd’hui"
   },
   "revue": {
     "titre": "Revue du soir",

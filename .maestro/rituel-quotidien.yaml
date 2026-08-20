@@ -1,0 +1,17 @@
+appId: com.antoinequarroz.nexelf
+---
+- launchApp
+- assertVisible: "Nexelf"
+- runFlow:
+    when:
+      visible: "Créer ma journée"
+    commands:
+      - tapOn: "Créer ma journée"
+      - assertVisible: "Cap du jour"
+- tapOn: "Accepter ce plan"
+- assertVisible: "Plan accepté. Tu peux encore le modifier."
+- tapOn: "Ouvrir la revue du soir"
+- assertVisible: "Revue du soir"
+- tapOn: "Énergie 3 sur 5"
+- tapOn: "Terminer ma revue"
+- assertVisible: "Revue terminée. Rien n’est ajouté à ta mémoire sans confirmation."

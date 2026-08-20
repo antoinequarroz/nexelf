@@ -57,7 +57,10 @@
     "accepter": "Accept this plan",
     "planAccepte": "Plan accepted. You can still change it.",
     "adapter": "Adapt my day",
-    "ouvrirRevue": "Open evening review"
+    "ouvrirRevue": "Open evening review",
+    "routines": "Routines",
+    "contraintes": "Constraints",
+    "rien": "None today"
   },
   "revue": {
     "titre": "Evening review",
