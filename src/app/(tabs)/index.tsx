@@ -54,7 +54,7 @@ export default function Accueil() {
   return (
     <Screen>
       <Header metadata={dateLocale(i18n.language)} title={t("rituel.bonjour")} />
-      <View className="mb-8"><ManifestImage aboveFold assetId="illustration-placeholder-portrait-01" /></View>
+      <View className="mb-8"><ManifestImage aboveFold assetId="horizon-accueil-matin-01" /></View>
       <Section title={t("rituel.cap")}>
       <Card tone="reflection">
         <Text className="font-semibold text-xs uppercase tracking-widest text-muted">

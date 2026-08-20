@@ -6,9 +6,9 @@ Le registre est branché sur trois surfaces prioritaires :
 
 | Surface | Asset candidat | Position | Ratio réservé | Comportement actuel |
 |---|---|---|---|---|
-| Accueil / briefing | `illustration-placeholder-portrait-01` | Au-dessus du cap | `4:5` | Fallback natif, asset `needs_review` bloqué |
-| Onboarding, étape 1 | `illustration-placeholder-portrait-01` | Après l'intention | `4:5` | Fallback natif, asset `needs_review` bloqué |
-| Objectifs | `illustration-placeholder-square-01` | Avant la création | `1:1` | Fallback natif, asset `needs_review` bloqué |
+| Accueil / briefing | `horizon-accueil-matin-01` | Au-dessus du cap | `3:2` | JPEG embarqué enregistré, asset `needs_review` bloqué ; fallback natif affiché |
+| Onboarding, étape 1 | `cap-onboarding-ouverture-01` | Après l'intention | `4:5` | JPEG embarqué enregistré, asset `needs_review` bloqué ; fallback natif affiché |
+| Objectifs | `gesture-objectifs-trajectoire-01` | Avant la création | `4:5` | JPEG embarqué enregistré, asset `needs_review` bloqué ; fallback natif affiché |
 
 Une seule instance `ManifestImage` est présente sur chacun de ces écrans. Le média reste séparé des titres, données, formulaires et actions. Les états de chargement et d'accès interdit ne demandent aucun média.
 
@@ -40,13 +40,14 @@ Tout autre cas utilise le fallback natif. Un asset `withdrawn`, `rejected`, `pro
 
 | Mesure | Valeur | Budget |
 |---|---:|---:|
-| Asset candidat portrait | 397 octets | 180 Ko maximum hero |
-| Asset candidat carré | 397 octets | 80 Ko maximum illustration |
+| Horizon accueil 1080 × 720 | 78 811 octets | 120 Ko cible / 180 Ko maximum hero |
+| Cap onboarding 1080 × 1350 | 152 357 octets | 120 Ko cible / 180 Ko maximum hero |
+| Geste objectifs 1026 × 1282 | 164 368 octets | 120 Ko cible / 180 Ko maximum hero |
 | Réseau au premier écran | 0 octet | 300 Ko cible / 450 Ko maximum |
-| Surcoût brut des deux SVG embarqués | 794 octets | À suivre dans le binaire réel |
+| Surcoût brut des trois JPEG du pack | 395 536 octets | À mesurer dans le binaire réel |
 | Images fortes par écran | 1 | 1 maximum |
 
-Le réseau reste à zéro car les candidats sont embarqués et bloqués avant approbation ; le fallback est composé de vues natives. Ces chiffres ne remplacent pas la mesure du binaire compressé ni le profil mémoire sur appareil.
+Le réseau reste à zéro car les candidats sont embarqués et bloqués avant approbation ; le fallback est composé de vues natives. Les deux portraits dépassent la cible de production de 120 Ko mais restent sous le maximum bloquant de 180 Ko. Ces chiffres ne remplacent pas la mesure du binaire compressé ni le profil mémoire sur appareil.
 
 ## Contrôles automatisés
 

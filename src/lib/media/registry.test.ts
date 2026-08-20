@@ -46,6 +46,21 @@ describe("media registry", () => {
     expect(resolveMedia("illustration-placeholder-portrait-01", 360, 3).source).toBeNull();
   });
 
+  it.each([
+    "horizon-accueil-matin-01",
+    "cap-onboarding-ouverture-01",
+    "gesture-objectifs-trajectoire-01",
+  ])("keeps generated pack candidate %s blocked pending review", (assetId) => {
+    const result = resolveMedia(assetId, 342, 3);
+    expect(result.availability).toBe("not_approved");
+    expect(result.source).toBeNull();
+  });
+
+  it("reserves the documented layout for generated pack candidates", () => {
+    expect(ratioToNumber("3:2")).toBe(1.5);
+    expect(ratioToNumber("4:5")).toBe(0.8);
+  });
+
   it("selects the smallest variant that covers rendered pixels", () => {
     expect(selectMediaVariant(asset(), 300, 2)?.width).toBe(800);
     expect(selectMediaVariant(asset(), 180, 2)?.width).toBe(400);

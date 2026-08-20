@@ -71,7 +71,7 @@ export default function Objectifs() {
 
   return (
     <ProductShell title={t("goals.title")} subtitle={t("goals.subtitle")}>
-      <View className="mb-8"><ManifestImage aboveFold assetId="illustration-placeholder-square-01" /></View>
+      <View className="mb-8"><ManifestImage aboveFold assetId="gesture-objectifs-trajectoire-01" /></View>
       {actionError ? <View className="mb-5"><Feedback actionLabel={t("etats.erreur.reessayer")} message={t("etats.erreur.corps")} onAction={retryAction ?? undefined} tone="danger" /></View> : null}
       {!formOpen ? <Section><Button label={t("goals.form.create")} onPress={() => { setEditing(null); setDraft(initial); setError(""); setFormOpen(true); }} /></Section> : null}
       {formOpen ? <Section>
