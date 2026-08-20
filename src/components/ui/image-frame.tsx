@@ -1,11 +1,12 @@
 import type { ImageProps } from "expo-image";
 import { Image } from "expo-image";
-import { useState } from "react";
+import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-type ImageFrameBaseProps = Pick<ImageProps, "source" | "contentFit" | "placeholder"> & {
+type ImageFrameBaseProps = Pick<ImageProps, "cachePolicy" | "contentFit" | "contentPosition" | "placeholder" | "priority" | "recyclingKey" | "source"> & {
   aspectRatio: number;
-  fallbackSource?: ImageProps["source"];
+  fallback?: ReactNode;
 };
 
 type ImageFrameProps = ImageFrameBaseProps & (
@@ -13,21 +14,31 @@ type ImageFrameProps = ImageFrameBaseProps & (
   | { accessibilityLabel?: never; decorative: true }
 );
 
-export function ImageFrame({ source, fallbackSource, aspectRatio, accessibilityLabel, decorative = false, contentFit = "cover", placeholder }: ImageFrameProps) {
+export function ImageFrame({ source, aspectRatio, accessibilityLabel, cachePolicy = "memory-disk", contentFit = "cover", contentPosition, decorative = false, fallback, placeholder, priority = "normal", recyclingKey }: ImageFrameProps) {
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [recyclingKey]);
 
   return (
     <View className="overflow-hidden rounded-lg bg-raised" style={{ aspectRatio }}>
-      <Image
-        accessibilityLabel={decorative ? undefined : accessibilityLabel}
-        accessible={!decorative}
-        className="h-full w-full"
-        contentFit={contentFit}
-        onError={() => setFailed(true)}
-        placeholder={placeholder}
-        source={failed && fallbackSource ? fallbackSource : source}
-        transition={0}
-      />
+      {!source || failed ? fallback : (
+        <Image
+          accessibilityLabel={decorative ? undefined : accessibilityLabel}
+          accessible={!decorative}
+          cachePolicy={cachePolicy}
+          className="h-full w-full"
+          contentFit={contentFit}
+          contentPosition={contentPosition}
+          onError={() => setFailed(true)}
+          placeholder={placeholder}
+          priority={priority}
+          recyclingKey={recyclingKey}
+          source={source}
+          transition={120}
+        />
+      )}
     </View>
   );
 }

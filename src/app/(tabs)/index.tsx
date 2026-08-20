@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { api } from "../../../convex/_generated/api";
 import { dateLocale, dateLocaleConvex, detailAction } from "../../lib/rituel";
 import { Button, Card, Feedback, Header, Progress, Screen, Section } from "../../components/ui";
+import { ManifestImage } from "../../components/media/manifest-image";
 
 export default function Accueil() {
   const { t, i18n } = useTranslation();
@@ -53,6 +54,7 @@ export default function Accueil() {
   return (
     <Screen>
       <Header eyebrow={dateLocale(i18n.language)} title={t("rituel.bonjour")} />
+      <View className="mb-8"><ManifestImage aboveFold assetId="illustration-placeholder-portrait-01" /></View>
       <Section title={t("rituel.cap")}>
       <Card tone="reflection">
         <Text className="font-semibold text-xs uppercase tracking-widest text-muted">

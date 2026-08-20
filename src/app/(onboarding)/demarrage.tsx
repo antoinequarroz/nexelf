@@ -7,6 +7,7 @@ import { api } from "../../../convex/_generated/api";
 import { ChoiceChip } from "../../components/onboarding/choice-chip";
 import { OnboardingShell } from "../../components/onboarding/onboarding-shell";
 import { Button, Card, Feedback, Field } from "../../components/ui";
+import { ManifestImage } from "../../components/media/manifest-image";
 
 type Tone = "doux" | "direct" | "equilibre";
 type Draft = { domaines: string[]; futur: string; objectifs: string[]; contraintes: string[]; energie: number; ton: Tone; durees: number[] };
@@ -68,6 +69,7 @@ export default function Onboarding() {
     <OnboardingShell step={step}>
       <Text accessibilityRole="header" className="font-display text-3xl leading-10 text-ink">{t(`onboarding.etapes.${step}.titre`)}</Text>
       <Text className="mb-7 mt-3 font-body text-base leading-6 text-muted">{t(`onboarding.etapes.${step}.description`)}</Text>
+      {step === 0 ? <View className="mb-7"><ManifestImage aboveFold assetId="illustration-placeholder-portrait-01" /></View> : null}
       {error ? <View className="mb-5"><Feedback tone="danger" message={error} /></View> : null}
       {step === 0 && <View className="flex-row flex-wrap">{domains.map(x => <ChoiceChip key={x} label={t(`onboarding.domaines.${x}`)} selected={draft.domaines.includes(x)} onPress={() => toggle("domaines", x)} />)}</View>}
       {step === 1 && <Field label={t("onboarding.futurLabel")} multiline onChangeText={futur => setDraft(d => ({ ...d, futur }))} placeholder={t("onboarding.futurPlaceholder")} textAlignVertical="top" value={draft.futur} style={{ minHeight: 144 }} />}

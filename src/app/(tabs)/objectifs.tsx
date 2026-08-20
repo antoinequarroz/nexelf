@@ -7,6 +7,7 @@ import type { Id } from "../../../convex/_generated/dataModel";
 import { authClient } from "../../lib/auth-client";
 import { ProductShell } from "../../components/product-shell";
 import { Badge, Button, Card, Choice, ChoiceGroup, Feedback, Field, Section } from "../../components/ui";
+import { ManifestImage } from "../../components/media/manifest-image";
 
 type Horizon = "court" | "moyen" | "long";
 type Priorite = "basse" | "normale" | "haute";
@@ -50,6 +51,7 @@ export default function Objectifs() {
 
   return (
     <ProductShell title={t("goals.title")} subtitle={t("goals.subtitle")}>
+      <View className="mb-8"><ManifestImage aboveFold assetId="illustration-placeholder-square-01" /></View>
       <Section>
         <Card tone="reflection">
           <Text className="mb-4 font-semibold text-lg text-ink">{t(editing ? "goals.form.edit" : "goals.form.create")}</Text>
