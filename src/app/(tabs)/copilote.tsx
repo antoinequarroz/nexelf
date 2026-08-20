@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Switch, Text, View } from "react-native";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
 import { api } from "../../../convex/_generated/api";
 import type { Id } from "../../../convex/_generated/dataModel";
 import { QuietScreen } from "../../components/quiet-screen";
 import { Chargement } from "../../components/etat";
+import { Button, Card, Feedback, Field, Section } from "../../components/ui";
+import { theme } from "../../lib/theme";
 
 export default function Copilote() {
   const { t } = useTranslation();
@@ -59,80 +61,53 @@ export default function Copilote() {
       title={t("copilote.title")}
       description={t("copilote.description")}
     >
-      <View
-        accessibilityRole="summary"
-        className="mb-6 rounded border border-lime bg-surface p-4"
-      >
-        <Text className="font-semibold text-lime">
+      <View className="mb-8">
+        <Card tone="growth">
+        <Text className="font-semibold text-progress">
           {t("copilote.manualTitle")}
         </Text>
         <Text className="mt-2 text-sm leading-5 text-muted">
           {t("copilote.manualBody")}
         </Text>
+        </Card>
       </View>
       {current ? (
-        <Pressable
-          accessibilityRole="switch"
-          accessibilityState={{ checked: current.exclueMemoire }}
-          className="mb-6 min-h-12 justify-center"
-          onPress={() =>
-            exclude({
+        <View className="mb-8"><Card><View className="flex-row items-center justify-between gap-4"><Text className="min-w-0 flex-1 font-body text-sm leading-5 text-ink">
+            {current.exclueMemoire ? t("copilote.memoryExcluded") : t("copilote.excludeMemory")}
+          </Text><Switch accessibilityLabel={t("copilote.excludeMemory")} value={current.exclueMemoire} trackColor={{ false: theme.border, true: theme.progress }} thumbColor={theme.surface} onValueChange={(exclue) => void exclude({
               conversationId: current._id,
-              exclue: !current.exclueMemoire,
-            })
-          }
-        >
-          <Text className="text-ink">
-            {current.exclueMemoire
-              ? t("copilote.memoryExcluded")
-              : t("copilote.excludeMemory")}
-          </Text>
-        </Pressable>
+              exclue,
+            })} /></View></Card></View>
       ) : null}
       {!messages?.length ? (
-        <View className="mb-6 rounded border border-line p-4">
-          <Text className="font-medium text-ink">
-            {t("copilote.emptyTitle")}
-          </Text>
-          <Text className="mt-2 text-sm leading-5 text-muted">
-            {t("copilote.emptyBody")}
-          </Text>
-        </View>
+        <View className="mb-8"><Feedback message={t("copilote.emptyBody")} title={t("copilote.emptyTitle")} /></View>
       ) : (
-        messages.map((message) => (
-          <View key={message._id} className="mb-3 ml-8 rounded bg-raised p-4">
+        <Section>{messages.map((message) => (
+          <View key={message._id} className="mb-3 ml-6"><Card tone="reflection">
             <Text className="text-xs uppercase tracking-widest text-subtle">
               {t("copilote.you")}
             </Text>
             <Text className="mt-2 text-ink">{message.contenu}</Text>
-          </View>
-        ))
+          </Card></View>
+        ))}</Section>
       )}
       {error ? (
-        <Text accessibilityRole="alert" className="mb-3 text-danger">
-          {error}
-        </Text>
+        <View className="mb-4"><Feedback message={error} tone="danger" /></View>
       ) : null}
-      <TextInput
-        accessibilityLabel={t("copilote.inputLabel")}
-        className="min-h-28 rounded border border-line bg-surface p-4 text-base text-ink"
+      <Field
+        label={t("copilote.inputLabel")}
         multiline
         placeholder={t("copilote.placeholder")}
-        placeholderTextColor="#707783"
         value={draft}
         onChangeText={setDraft}
       />
-      <Pressable
-        accessibilityRole="button"
-        accessibilityState={{ disabled: !draft.trim() || busy }}
+      <Button
         disabled={!draft.trim() || busy}
-        className="mt-3 min-h-14 items-center justify-center rounded bg-lime disabled:opacity-40"
+        label={t("copilote.save")}
+        loading={busy}
+        loadingLabel={t("copilote.saving")}
         onPress={submit}
-      >
-        <Text className="font-semibold text-lime-ink">
-          {busy ? t("copilote.saving") : t("copilote.save")}
-        </Text>
-      </Pressable>
+      />
     </QuietScreen>
   );
 }

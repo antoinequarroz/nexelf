@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pressable, ScrollView, Switch, Text, View } from "react-native";
+import { Switch, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
   creerPlanningNotifications,
@@ -7,6 +7,7 @@ import {
   remplacerNotificationsNexelf,
 } from "../lib/notifications";
 import { theme } from "../lib/theme";
+import { Button, Card, Feedback, Header, Screen, Section } from "../components/ui";
 
 export default function ReglagesNotifications() {
   const { t } = useTranslation();
@@ -34,12 +35,11 @@ export default function ReglagesNotifications() {
   }
 
   return (
-    <ScrollView className="flex-1 bg-canvas" contentContainerClassName="px-6 pb-12 pt-8">
-      <Text className="font-display text-3xl text-ink">{t("notifications.titre")}</Text>
-      <Text className="mt-3 font-body text-sm leading-6 text-muted">{t("notifications.description")}</Text>
-
+    <Screen>
+      <Header description={t("notifications.description")} title={t("notifications.titre")} />
+      <Section>
       {(["briefing", "review", "priorite"] as const).map((categorie) => (
-        <View key={categorie} className="mt-6 min-h-20 flex-row items-center justify-between rounded-lg border border-line bg-surface p-5">
+        <View key={categorie} className="mb-4"><Card><View className="min-h-14 flex-row items-center justify-between gap-4">
           <View className="mr-4 flex-1">
             <Text className="font-medium text-base text-ink">{t(`notifications.${categorie}.titre`)}</Text>
             <Text className="mt-1 font-body text-sm leading-5 text-muted">{t(`notifications.${categorie}.description`)}</Text>
@@ -48,25 +48,23 @@ export default function ReglagesNotifications() {
             accessibilityLabel={t(`notifications.${categorie}.titre`)}
             value={reglages[categorie]}
             onValueChange={(value) => setReglages((actuels) => ({ ...actuels, [categorie]: value }))}
-            trackColor={{ false: theme.border, true: theme.limePressed }}
-            thumbColor={reglages[categorie] ? theme.lime : theme.textMuted}
+            trackColor={{ false: theme.border, true: theme.progressPressed }}
+            thumbColor={reglages[categorie] ? theme.progress : theme.textMuted}
           />
-        </View>
+        </View></Card></View>
       ))}
+      </Section>
 
-      <Text className="mt-6 font-body text-xs leading-5 text-subtle">{t("notifications.limite")}</Text>
-      <Pressable
-        accessibilityRole="button"
+      <Text className="mb-6 font-body text-xs leading-5 text-subtle">{t("notifications.limite")}</Text>
+      <Button
         disabled={etat === "enregistrement"}
+        label={t("notifications.enregistrer")}
+        loading={etat === "enregistrement"}
+        loadingLabel={t("notifications.enregistrement")}
         onPress={enregistrer}
-        className="mt-6 min-h-14 items-center justify-center rounded bg-lime px-6 disabled:opacity-50"
-      >
-        <Text className="font-semibold text-base text-lime-ink">
-          {t(etat === "enregistrement" ? "notifications.enregistrement" : "notifications.enregistrer")}
-        </Text>
-      </Pressable>
-      {etat === "ok" && <Text className="mt-4 text-center font-body text-sm text-lime">{t("notifications.succes")}</Text>}
-      {etat === "erreur" && <Text className="mt-4 text-center font-body text-sm text-danger">{t("notifications.erreur")}</Text>}
-    </ScrollView>
+      />
+      {etat === "ok" ? <View className="mt-4"><Feedback message={t("notifications.succes")} tone="success" /></View> : null}
+      {etat === "erreur" ? <View className="mt-4"><Feedback message={t("notifications.erreur")} tone="danger" /></View> : null}
+    </Screen>
   );
 }

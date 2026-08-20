@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, Pressable, Switch, Text, TextInput, View } from "react-native";
+import { Alert, Switch, Text, View } from "react-native";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
 import { api } from "../../convex/_generated/api";
@@ -7,6 +7,7 @@ import type { Id } from "../../convex/_generated/dataModel";
 import { QuietScreen } from "../components/quiet-screen";
 import { Chargement } from "../components/etat";
 import { theme } from "../lib/theme";
+import { Badge, Button, Card, Feedback, Field, Section } from "../components/ui";
 
 export default function Memoire() {
   const { t, i18n } = useTranslation();
@@ -47,7 +48,7 @@ export default function Memoire() {
       title={t("memory.title")}
       description={t("memory.description")}
     >
-      <View className="mb-8 flex-row items-center justify-between rounded border border-line bg-surface p-4">
+      <Section><Card tone="growth"><View className="flex-row items-center justify-between gap-4">
         <View className="mr-4 flex-1">
           <Text className="font-medium text-ink">{t("memory.enabled")}</Text>
           <Text className="mt-1 text-sm text-muted">
@@ -61,26 +62,19 @@ export default function Memoire() {
           onValueChange={(memoireActive) => {
             void updatePreferences({ memoireActive });
           }}
-          trackColor={{ false: theme.border, true: theme.lime }}
-          thumbColor={theme.text}
+          trackColor={{ false: theme.border, true: theme.progress }}
+          thumbColor={theme.surface}
         />
-      </View>
+      </View></Card></Section>
       <Text className="mb-3 text-xs uppercase tracking-widest text-subtle">
         {t("memory.proposals")}
       </Text>
       {!proposals?.length ? (
-        <Text className="mb-8 rounded border border-line p-4 leading-5 text-muted">
-          {t("memory.noSilent")}
-        </Text>
+        <View className="mb-8"><Feedback message={t("memory.noSilent")} /></View>
       ) : (
         proposals.map((proposal) => (
-          <View
-            key={proposal._id}
-            className="mb-4 rounded border border-lime bg-surface p-4"
-          >
-            <Text className="text-xs uppercase tracking-widest text-lime">
-              {t(`memory.categories.${proposal.categorie}`)}
-            </Text>
+          <View key={proposal._id} className="mb-5"><Card tone="reflection">
+            <Badge label={t(`memory.categories.${proposal.categorie}`)} tone="action" />
             <Text className="mt-2 text-ink">{proposal.contenu}</Text>
             <Text className="mt-2 text-xs text-subtle">
               {t("memory.sourceDate", {
@@ -88,54 +82,36 @@ export default function Memoire() {
                 date: formatDate(proposal.creeLe),
               })}
             </Text>
-            <View className="mt-4 flex-row">
-              <Pressable
-                accessibilityRole="button"
-                className="mr-3 min-h-11 flex-1 items-center justify-center rounded bg-lime"
+            <View className="mt-4 gap-2">
+              <Button label={t("memory.confirm")}
                 onPress={() =>
                   decide({ propositionId: proposal._id, accepter: true })
                 }
-              >
-                <Text className="font-semibold text-lime-ink">
-                  {t("memory.confirm")}
-                </Text>
-              </Pressable>
-              <Pressable
-                accessibilityRole="button"
-                className="min-h-11 flex-1 items-center justify-center rounded border border-line"
+              />
+              <Button label={t("memory.reject")} variant="secondary"
                 onPress={() =>
                   decide({ propositionId: proposal._id, accepter: false })
                 }
-              >
-                <Text className="text-ink">{t("memory.reject")}</Text>
-              </Pressable>
+              />
             </View>
-          </View>
+          </Card></View>
         ))
       )}
       <Text className="mb-3 text-xs uppercase tracking-widest text-subtle">
         {t("memory.saved")}
       </Text>
       {!memories?.length ? (
-        <Text className="rounded border border-line p-4 text-muted">
-          {t("memory.empty")}
-        </Text>
+        <Feedback message={t("memory.empty")} />
       ) : (
         memories.map((memory) => (
-          <View
-            key={memory._id}
-            className="mb-4 rounded border border-line bg-surface p-4"
-          >
-            <Text className="text-xs uppercase tracking-widest text-subtle">
-              {t(`memory.categories.${memory.categorie}`)}
-            </Text>
+          <View key={memory._id} className="mb-5"><Card>
+            <Badge label={t(`memory.categories.${memory.categorie}`)} />
             {editing === memory._id ? (
-              <TextInput
-                accessibilityLabel={t("memory.editLabel")}
-                className="mt-3 min-h-14 rounded border border-line p-3 text-ink"
+              <View className="mt-3"><Field
+                label={t("memory.editLabel")}
                 value={content}
                 onChangeText={setContent}
-              />
+              /></View>
             ) : (
               <Text className="mt-2 text-ink">{memory.contenu}</Text>
             )}
@@ -145,39 +121,25 @@ export default function Memoire() {
                 date: formatDate(memory.creeLe),
               })}
             </Text>
-            <View className="mt-3 flex-row">
+            <View className="mt-4 gap-2">
               {editing === memory._id ? (
-                <Pressable
-                  accessibilityRole="button"
-                  className="mr-5 min-h-11 justify-center"
+                <Button label={t("memory.save")} variant="secondary"
                   onPress={async () => {
                     await correct({ souvenirId: memory._id, contenu: content });
                     setEditing(undefined);
                   }}
-                >
-                  <Text className="text-lime">{t("memory.save")}</Text>
-                </Pressable>
+                />
               ) : (
-                <Pressable
-                  accessibilityRole="button"
-                  className="mr-5 min-h-11 justify-center"
+                <Button label={t("memory.edit")} variant="secondary"
                   onPress={() => {
                     setEditing(memory._id);
                     setContent(memory.contenu);
                   }}
-                >
-                  <Text className="text-lime">{t("memory.edit")}</Text>
-                </Pressable>
+                />
               )}
-              <Pressable
-                accessibilityRole="button"
-                className="min-h-11 justify-center"
-                onPress={() => confirmDelete(memory._id)}
-              >
-                <Text className="text-danger">{t("memory.delete")}</Text>
-              </Pressable>
+              <Button label={t("memory.delete")} variant="destructive" onPress={() => confirmDelete(memory._id)} />
             </View>
-          </View>
+          </Card></View>
         ))
       )}
     </QuietScreen>

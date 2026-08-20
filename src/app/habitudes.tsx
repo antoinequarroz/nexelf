@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { useMutation, useQuery } from "convex/react";
 import { useTranslation } from "react-i18next";
 import { api } from "../../convex/_generated/api";
 import type { Id } from "../../convex/_generated/dataModel";
 import { QuietScreen } from "../components/quiet-screen";
 import { Chargement } from "../components/etat";
+import { Badge, Button, Card, Choice, ChoiceGroup, Feedback, Field, Section } from "../components/ui";
 import {
   dateLocale,
   JOURS_SEMAINE,
@@ -73,82 +74,55 @@ export default function Habitudes() {
       title={t("habits.title")}
       description={t("habits.description")}
     >
-      <View className="mb-8 rounded border border-line bg-surface p-4">
+      <Section><Card tone="growth">
         <Text className="font-medium text-ink">{t("habits.createTitle")}</Text>
-        <TextInput
-          accessibilityLabel={t("habits.name")}
-          className="mt-4 min-h-12 rounded border border-line px-3 text-ink"
+        <View className="mt-4"><Field
+          label={t("habits.name")}
           placeholder={t("habits.namePlaceholder")}
-          placeholderTextColor="#707783"
           value={name}
           onChangeText={setName}
-        />
-        <TextInput
-          accessibilityLabel={t("habits.moment")}
-          className="mt-3 min-h-12 rounded border border-line px-3 text-ink"
+        /></View>
+        <Field
+          label={t("habits.moment")}
           placeholder={t("habits.momentPlaceholder")}
-          placeholderTextColor="#707783"
           value={moment}
           onChangeText={setMoment}
         />
-        <View
-          accessibilityRole="radiogroup"
-          className="mt-4 flex-row flex-wrap"
-        >
+        <ChoiceGroup>
           {JOURS_SEMAINE.map((day) => (
-            <Pressable
+            <Choice
               key={day}
-              accessibilityRole="checkbox"
-              accessibilityState={{ checked: days.includes(day) }}
-              className={`mb-2 mr-2 min-h-11 min-w-11 items-center justify-center rounded border ${days.includes(day) ? "border-lime bg-lime" : "border-line"}`}
+              label={t(`habits.days.${day}`)}
+              selected={days.includes(day)}
               onPress={() => toggleDay(day)}
-            >
-              <Text
-                className={days.includes(day) ? "text-lime-ink" : "text-muted"}
-              >
-                {t(`habits.days.${day}`)}
-              </Text>
-            </Pressable>
+            />
           ))}
-        </View>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityState={{ disabled: !name.trim() || !days.length }}
+        </ChoiceGroup>
+        <View className="mt-4"><Button
           disabled={!name.trim() || !days.length}
-          className="mt-3 min-h-12 items-center justify-center rounded bg-lime disabled:opacity-40"
+          label={editing ? t("memory.save") : t("habits.add")}
           onPress={addHabit}
-        >
-          <Text className="font-semibold text-lime-ink">
-            {editing ? t("memory.save") : t("habits.add")}
-          </Text>
-        </Pressable>
-      </View>
+        /></View>
+      </Card></Section>
       <Text className="mb-3 text-xs uppercase tracking-widest text-subtle">
         {t("habits.today")}
       </Text>
       {!active.length ? (
-        <Text className="mb-8 rounded border border-line p-4 leading-5 text-muted">
-          {t("habits.empty")}
-        </Text>
+        <View className="mb-8"><Feedback message={t("habits.empty")} /></View>
       ) : (
         active.map((habit) => {
           const done = occurrences?.find(
             (item) => item.habitudeId === habit._id,
           );
           return (
-            <View
-              key={habit._id}
-              className="mb-4 rounded border border-line bg-surface p-4"
-            >
+            <View key={habit._id} className="mb-5"><Card>
               <Text className="font-medium text-ink">{habit.nom}</Text>
               <Text className="mt-1 text-sm text-muted">
                 {habit.moment || t("habits.flexible")} ·{" "}
                 {habit.jours.map((day) => t(`habits.days.${day}`)).join(" ")}
               </Text>
               {done ? (
-                <Text className="mt-3 text-lime">
-                  {t(`habits.statuses.${done.statut}`)}
-                </Text>
+                <View className="mt-3"><Badge label={t(`habits.statuses.${done.statut}`)} tone="success" /></View>
               ) : (
                 <View className="mt-3 flex-row flex-wrap">
                   <Pressable
@@ -162,7 +136,7 @@ export default function Habitudes() {
                       })
                     }
                   >
-                    <Text className="text-lime">{t("habits.complete")}</Text>
+                    <Text className="text-progress">{t("habits.complete")}</Text>
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
@@ -204,7 +178,7 @@ export default function Habitudes() {
                     setDays(habit.jours);
                   }}
                 >
-                  <Text className="text-lime">{t("memory.edit")}</Text>
+                  <Text className="text-action">{t("memory.edit")}</Text>
                 </Pressable>
                 <Pressable
                   accessibilityRole="button"
@@ -232,21 +206,20 @@ export default function Habitudes() {
                   <Text className="text-danger">{t("habits.archive")}</Text>
                 </Pressable>
               </View>
-            </View>
+            </Card></View>
           );
         })
       )}
       {active.length ? (
-        <View className="mt-5 rounded border border-line p-4">
+        <View className="mt-5"><Card tone="reflection">
           <Text className="font-medium text-ink">
             {t("habits.routineTitle")}
           </Text>
-          <TextInput
-            accessibilityLabel={t("habits.routineName")}
-            className="mt-3 min-h-12 rounded border border-line px-3 text-ink"
+          <View className="mt-3"><Field
+            label={t("habits.routineName")}
             value={routineName}
             onChangeText={setRoutineName}
-          />
+          /></View>
           {active.map((habit) => (
             <Pressable
               key={habit._id}
@@ -257,7 +230,7 @@ export default function Habitudes() {
             >
               <Text
                 className={
-                  selected.includes(habit._id) ? "text-lime" : "text-muted"
+                  selected.includes(habit._id) ? "text-action" : "text-muted"
                 }
               >
                 {selected.includes(habit._id) ? "✓ " : "○ "}
@@ -265,19 +238,17 @@ export default function Habitudes() {
               </Text>
             </Pressable>
           ))}
-          <Pressable
-            accessibilityRole="button"
+          <Button
             disabled={!routineName.trim() || !selected.length}
-            className="mt-3 min-h-12 items-center justify-center rounded border border-lime disabled:opacity-40"
+            label={t("habits.createRoutine")}
+            variant="secondary"
             onPress={async () => {
               await createRoutine({ nom: routineName, habitudeIds: selected });
               setRoutineName("");
               setSelected([]);
             }}
-          >
-            <Text className="text-lime">{t("habits.createRoutine")}</Text>
-          </Pressable>
-        </View>
+          />
+        </Card></View>
       ) : null}
       {routines?.length ? (
         <Text className="mt-5 text-sm text-muted">
