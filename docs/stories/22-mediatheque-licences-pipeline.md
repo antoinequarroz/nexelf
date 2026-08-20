@@ -1,6 +1,6 @@
 # 22 — Constituer la médiathèque et tracer les droits
 
-Statut : fait — infrastructure prête, sélection éditoriale à fournir
+Statut : partiel — pipeline livré, sélection éditoriale et approbations manquantes
 Taille : M
 Dépend de : 21
 

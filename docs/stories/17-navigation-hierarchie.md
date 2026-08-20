@@ -1,6 +1,6 @@
 # 17 — Clarifier la navigation et la hiérarchie des écrans
 
-Statut : à faire  
+Statut : partiel — architecture livrée, gestes et retours à valider sur appareils  
 Taille : L  
 Dépend de : 16
 

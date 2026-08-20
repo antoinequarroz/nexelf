@@ -1,6 +1,6 @@
 # 14 — Donner une identité visuelle cohérente à Nexelf
 
-Statut : à faire  
+Statut : bloqué — maître du logo original et validation native manquants  
 Taille : M  
 Dépend de : 02, 05
 

@@ -1,6 +1,6 @@
 # 19 — Migrer les écrans secondaires
 
-Statut : à faire
+Statut : partiel — écrans migrés, contenus extrêmes et validation native à compléter
 Taille : L
 Dépend de : 16, 17, 18
 

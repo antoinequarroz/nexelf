@@ -1,6 +1,6 @@
 # 18 — Migrer l'accueil et les parcours principaux
 
-Statut : à faire
+Statut : partiel — écrans migrés, logo et validation E2E native manquants
 Taille : L
 Dépend de : 15, 16, 17
 

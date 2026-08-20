@@ -1,6 +1,6 @@
 # 23 — Intégrer les images dans Expo et valider la qualité visuelle
 
-Statut : fait — QA automatisée, validation sur appareils à exécuter
+Statut : partiel — intégration automatisée livrée, assets approuvés et QA native manquants
 Taille : M
 Dépend de : 21, 22
 

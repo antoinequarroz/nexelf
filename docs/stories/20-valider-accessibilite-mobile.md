@@ -1,6 +1,6 @@
 # 20 — Valider l'accessibilité mobile de la nouvelle interface
 
-Statut : à faire
+Statut : bloqué — essais humains VoiceOver, TalkBack et appareils manquants
 Taille : M
 Dépend de : 16, 17, 18, 19
 

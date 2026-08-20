@@ -1,6 +1,6 @@
 # 15 — Adopter la direction « Élan lumineux »
 
-Statut : à faire  
+Statut : partiel — direction et tokens livrés, logo et validation visuelle native manquants  
 Taille : M  
 Dépend de : 14
 

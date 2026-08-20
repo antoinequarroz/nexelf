@@ -1,6 +1,6 @@
 # 16 — Construire les primitives mobiles claires
 
-Statut : à faire  
+Statut : partiel — primitives livrées, validation native à compléter  
 Taille : L  
 Dépend de : 15
 
