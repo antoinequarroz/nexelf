@@ -2,13 +2,15 @@ import "../../global.css";
 import "../i18n";
 
 import { useEffect } from "react";
-import { Stack } from "expo-router";
+import { router, Stack, useRootNavigationState } from "expo-router";
+import * as Notifications from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import { ConvexReactClient } from "convex/react";
 import { ConvexBetterAuthProvider } from "@convex-dev/better-auth/react";
 import * as Sentry from "@sentry/react-native";
 import { authClient } from "../lib/auth-client";
 import { theme } from "../lib/theme";
+import { extraireCheminNotification } from "../lib/notifications";
 import { useFonts as useSora, Sora_600SemiBold } from "@expo-google-fonts/sora";
 import {
   useFonts as useManrope,
@@ -33,6 +35,28 @@ const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
   unsavedChangesWarning: false,
 });
 
+function NavigationNotifications() {
+  const reponse = Notifications.useLastNotificationResponse();
+  const navigation = useRootNavigationState();
+  const { isPending } = authClient.useSession();
+
+  useEffect(() => {
+    // Le hook couvre l'ouverture à froid et les appuis reçus app ouverte.
+    // On attend que le routeur et la restauration de session soient prêts.
+    if (!reponse || !navigation?.key || isPending) return;
+
+    const chemin = extraireCheminNotification(reponse.notification);
+    if (chemin) {
+      router.push(chemin);
+    }
+
+    // Une réponse invalide est ignorée et ne sera pas rejouée au prochain rendu.
+    Notifications.clearLastNotificationResponse();
+  }, [isPending, navigation?.key, reponse]);
+
+  return null;
+}
+
 function RootLayout() {
   const [soraLoaded] = useSora({ Sora_600SemiBold });
   const [manropeLoaded] = useManrope({
@@ -53,6 +77,7 @@ function RootLayout() {
     // Même cause que dans auth-client.ts : incompatibilité de typage en amont
     // entre le plugin Expo et better-auth. Sans effet à l'exécution.
     <ConvexBetterAuthProvider client={convex} authClient={authClient as never}>
+      <NavigationNotifications />
       <StatusBar style="light" />
       <Stack
         screenOptions={{
