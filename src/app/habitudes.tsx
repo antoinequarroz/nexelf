@@ -22,6 +22,7 @@ export default function Habitudes() {
     date: today,
   });
   const create = useMutation(api.habitudes.creer);
+  const update = useMutation(api.habitudes.modifier);
   const status = useMutation(api.habitudes.changerStatut);
   const occurrence = useMutation(api.habitudes.changerOccurrence);
   const createRoutine = useMutation(api.habitudes.creerRoutine);
@@ -30,18 +31,22 @@ export default function Habitudes() {
   const [days, setDays] = useState<number[]>([]);
   const [routineName, setRoutineName] = useState("");
   const [selected, setSelected] = useState<Id<"habitudes">[]>([]);
+  const [editing, setEditing] = useState<Id<"habitudes">>();
   const active = habits?.filter((habit) => habit.statut !== "archivee") ?? [];
 
   async function addHabit() {
     if (!name.trim() || !days.length) return;
-    await create({
+    const values = {
       nom: name,
       jours: normaliserJours(days),
       moment: moment.trim() || undefined,
-    });
+    };
+    if (editing) await update({ habitudeId: editing, ...values });
+    else await create(values);
     setName("");
     setMoment("");
     setDays([]);
+    setEditing(undefined);
   }
   function toggleDay(day: number) {
     setDays((value) =>
@@ -113,7 +118,9 @@ export default function Habitudes() {
           className="mt-3 min-h-12 items-center justify-center rounded bg-lime disabled:opacity-40"
           onPress={addHabit}
         >
-          <Text className="font-semibold text-lime-ink">{t("habits.add")}</Text>
+          <Text className="font-semibold text-lime-ink">
+            {editing ? t("memory.save") : t("habits.add")}
+          </Text>
         </Pressable>
       </View>
       <Text className="mb-3 text-xs uppercase tracking-widest text-subtle">
@@ -187,6 +194,18 @@ export default function Habitudes() {
                 </View>
               )}
               <View className="mt-2 flex-row">
+                <Pressable
+                  accessibilityRole="button"
+                  className="mr-5 min-h-11 justify-center"
+                  onPress={() => {
+                    setEditing(habit._id);
+                    setName(habit.nom);
+                    setMoment(habit.moment ?? "");
+                    setDays(habit.jours);
+                  }}
+                >
+                  <Text className="text-lime">{t("memory.edit")}</Text>
+                </Pressable>
                 <Pressable
                   accessibilityRole="button"
                   className="mr-5 min-h-11 justify-center"
