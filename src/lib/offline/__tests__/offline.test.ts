@@ -1,5 +1,4 @@
-import assert from "node:assert/strict";
-import test from "node:test";
+import { expect, test } from "vitest";
 
 import { retryDelayMs } from "../backoff";
 import { resolveLastWriteWins } from "../conflict";
@@ -21,29 +20,29 @@ const operation = (id: string, accountId = "account-a"): OutboxOperation => ({
 
 test("l'outbox est idempotente et isolée par compte", async () => {
   const repository = new MemoryOutboxRepository();
-  assert.equal(await repository.enqueue(operation("same-id")), true);
-  assert.equal(await repository.enqueue(operation("same-id")), false);
+  expect(await repository.enqueue(operation("same-id"))).toBe(true);
+  expect(await repository.enqueue(operation("same-id"))).toBe(false);
   await repository.enqueue(operation("other-id", "account-b"));
 
-  assert.deepEqual((await repository.due("account-a", 100, 10)).map((item) => item.id), [
+  expect((await repository.due("account-a", 100, 10)).map((item) => item.id)).toEqual([
     "same-id",
   ]);
   await repository.acknowledge("account-b", ["same-id"]);
-  assert.equal((await repository.due("account-a", 100, 10)).length, 1);
+  expect((await repository.due("account-a", 100, 10))).toHaveLength(1);
 });
 
 test("LWW converge même lorsque les horodatages sont égaux", () => {
   const first = { value: "first", updatedAt: 100, operationId: "a" };
   const second = { value: "second", updatedAt: 100, operationId: "b" };
-  assert.equal(resolveLastWriteWins(first, second).value, "second");
-  assert.equal(resolveLastWriteWins(second, first).value, "second");
+  expect(resolveLastWriteWins(first, second).value).toBe("second");
+  expect(resolveLastWriteWins(second, first).value).toBe("second");
 });
 
 test("le backoff est exponentiel, borné et déterministe avec une source injectée", () => {
   const random = { next: () => 0.5 };
-  assert.equal(retryDelayMs(1, random), 1_000);
-  assert.equal(retryDelayMs(3, random), 4_000);
-  assert.equal(retryDelayMs(99, random), 300_000);
+  expect(retryDelayMs(1, random)).toBe(1_000);
+  expect(retryDelayMs(3, random)).toBe(4_000);
+  expect(retryDelayMs(99, random)).toBe(300_000);
 });
 
 test("la synchronisation acquitte les succès et reprogramme les erreurs", async () => {
@@ -58,14 +57,14 @@ test("la synchronisation acquitte les succès et reprogramme les erreurs", async
   };
   const sync = new OutboxSync(repository, transport, { now: () => 100 }, { next: () => 0.5 });
 
-  assert.deepEqual(await sync.run("account-a"), {
+  expect(await sync.run("account-a")).toEqual({
     sent: 2,
     acknowledged: 1,
     scheduledForRetry: 1,
     permanentlyRejected: 0,
   });
-  assert.equal((await repository.due("account-a", 100, 10)).length, 0);
-  assert.equal((await repository.due("account-a", 1_100, 10))[0]?.attempts, 1);
+  expect(await repository.due("account-a", 100, 10)).toHaveLength(0);
+  expect((await repository.due("account-a", 1_100, 10))[0]?.attempts).toBe(1);
 });
 
 test("une panne réseau conserve chaque opération", async () => {
@@ -75,6 +74,6 @@ test("une panne réseau conserve chaque opération", async () => {
   const sync = new OutboxSync(repository, transport, { now: () => 100 }, { next: () => 0.5 });
   const result = await sync.run("account-a");
 
-  assert.equal(result.scheduledForRetry, 1);
-  assert.equal((await repository.due("account-a", 1_100, 10))[0]?.id, "pending");
+  expect(result.scheduledForRetry).toBe(1);
+  expect((await repository.due("account-a", 1_100, 10))[0]?.id).toBe("pending");
 });

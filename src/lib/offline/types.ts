@@ -38,7 +38,7 @@ export interface VersionedValue<T> {
 
 export interface PushResult {
   acceptedIds: OperationId[];
-  rejected: Array<{ id: OperationId; retryable: boolean; reason?: string }>;
+  rejected: { id: OperationId; retryable: boolean; reason?: string }[];
 }
 
 export interface SyncTransport {
