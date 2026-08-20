@@ -18,8 +18,17 @@
 | 12  | Découvrir et restaurer Nexelf Pro                | M      | 01, 06     |
 | 13  | Obtenir de l'aide et signaler un problème        | M      | 01, 06     |
 | 14  | Donner une identité visuelle cohérente à Nexelf  | M      | 02, 05     |
+| 15  | Établir la direction « Élan lumineux »           | M      | 14         |
+| 16  | Construire les primitives mobiles claires        | L      | 15         |
+| 17  | Clarifier la navigation et la hiérarchie         | M      | 15, 16     |
+| 18  | Migrer les parcours principaux                   | L      | 16, 17, 21 |
+| 19  | Migrer les écrans secondaires                    | L      | 16, 18     |
+| 20  | Valider l'accessibilité mobile                   | M      | 18, 19     |
+| 21  | Définir le langage photographique et illustratif | M      | 15         |
+| 22  | Constituer la médiathèque et tracer les licences | M      | 21         |
+| 23  | Intégrer et valider les images dans Expo         | M      | 16, 22     |
 
-Total : 8 M, 6 L. L'accessibilité, le français/anglais, la sécurité, les états dégradés et l'observabilité sont transversaux.
+Total : 14 M, 9 L. L'accessibilité, le français/anglais, la sécurité, les états dégradés et l'observabilité sont transversaux.
 
 ## Ordre de construction
 
@@ -30,6 +39,7 @@ Total : 8 M, 6 L. L'accessibilité, le français/anglais, la sécurité, les ét
 5. **Résilience** — hors-ligne, synchronisation, notifications et erreurs.
 6. **Progression et revenu** — insights, RevenueCat, support et opérations.
 7. **Validation** — accessibilité, sécurité, performance et préparation stores.
+8. **Élan lumineux** — identité, primitives, navigation, images et migration visuelle par parcours.
 
 Construire chaque tranche de bout en bout, avec ses états vide, chargement, erreur et permissions, avant de passer à la suivante.
 
