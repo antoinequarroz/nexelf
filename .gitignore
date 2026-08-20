@@ -44,3 +44,7 @@ example
 
 .env.local
 .env
+
+# private media masters; keep only the workflow documentation
+/media/sources/*
+!/media/sources/README.md

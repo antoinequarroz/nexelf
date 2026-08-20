@@ -60,6 +60,7 @@
     "ios": "expo start --ios",
     "check": "tsc --noEmit && expo lint",
     "test": "vitest run",
+    "media:check": "node scripts/validate-media.mjs",
     "e2e": "maestro test .maestro",
     "doctor": "npx expo-doctor",
     "lint": "expo lint"

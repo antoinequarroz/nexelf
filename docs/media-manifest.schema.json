@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexelf.local/schemas/media-manifest.schema.json",
+  "title": "Nexelf media manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "assets"],
+  "properties": {
+    "version": { "const": 1 },
+    "assets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/asset" }
+    }
+  },
+  "$defs": {
+    "nullableString": { "type": ["string", "null"] },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "role", "family", "sourceType", "sourceUrlOrReference", "author",
+        "license", "licenseProof", "acquiredAt", "allowedUses", "attribution",
+        "expiresAt", "containsIdentifiablePerson", "consentReference", "aiModel",
+        "aiPromptReference", "generatedAt", "focalPoint", "ratios", "altFr",
+        "decorative", "variants", "width", "height", "bytes", "reviewStatus",
+        "approvedBy", "approvedAt", "reviewNotes"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9]+(?:-[a-z0-9]+){2,}$" },
+        "role": { "enum": ["screen_hero", "card_image", "thumbnail", "avatar", "state_illustration"] },
+        "family": { "enum": ["cap", "gesture", "horizon", "illustration"] },
+        "sourceType": { "enum": ["original", "generated", "licensed", "shooting", "user_provided"] },
+        "sourceUrlOrReference": { "$ref": "#/$defs/nullableString" },
+        "author": { "$ref": "#/$defs/nullableString" },
+        "license": { "$ref": "#/$defs/nullableString" },
+        "licenseProof": { "$ref": "#/$defs/nullableString" },
+        "acquiredAt": { "$ref": "#/$defs/nullableString" },
+        "allowedUses": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "attribution": { "$ref": "#/$defs/nullableString" },
+        "expiresAt": { "$ref": "#/$defs/nullableString" },
+        "containsIdentifiablePerson": { "type": "boolean" },
+        "consentReference": { "$ref": "#/$defs/nullableString" },
+        "aiModel": { "$ref": "#/$defs/nullableString" },
+        "aiPromptReference": { "$ref": "#/$defs/nullableString" },
+        "generatedAt": { "$ref": "#/$defs/nullableString" },
+        "focalPoint": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["x", "y"],
+              "properties": {
+                "x": { "type": "number", "minimum": 0, "maximum": 1 },
+                "y": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          ]
+        },
+        "ratios": { "type": "array", "items": { "enum": ["1:1", "4:5", "3:2"] }, "uniqueItems": true },
+        "altFr": { "$ref": "#/$defs/nullableString" },
+        "decorative": { "type": "boolean" },
+        "variants": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/variant" } },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "reviewStatus": { "enum": ["processing", "needs_review", "approved", "rejected", "withdrawn"] },
+        "approvedBy": { "$ref": "#/$defs/nullableString" },
+        "approvedAt": { "$ref": "#/$defs/nullableString" },
+        "reviewNotes": { "$ref": "#/$defs/nullableString" }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["density", "delivery", "pathOrKey", "format", "width", "height", "bytes"],
+      "properties": {
+        "density": { "enum": ["1x", "2x", "3x"] },
+        "delivery": { "enum": ["bundled", "remote"] },
+        "pathOrKey": { "type": "string", "minLength": 1 },
+        "format": { "enum": ["svg", "webp", "png", "jpeg"] },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "bytes": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

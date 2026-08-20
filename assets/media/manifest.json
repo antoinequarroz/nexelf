@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "illustration-placeholder-square-01",
+      "role": "state_illustration",
+      "family": "illustration",
+      "sourceType": "original",
+      "sourceUrlOrReference": "docs/visual-reference-board.md#d-illustrations-editoriales",
+      "author": "Nexelf / Codex",
+      "license": "project-authored",
+      "licenseProof": "internal:git-history",
+      "acquiredAt": "2026-08-20",
+      "allowedUses": ["expo-app"],
+      "attribution": null,
+      "expiresAt": null,
+      "containsIdentifiablePerson": false,
+      "consentReference": null,
+      "aiModel": null,
+      "aiPromptReference": null,
+      "generatedAt": null,
+      "focalPoint": { "x": 0.5, "y": 0.5 },
+      "ratios": ["1:1"],
+      "altFr": null,
+      "decorative": true,
+      "variants": [
+        {
+          "density": "1x",
+          "delivery": "bundled",
+          "pathOrKey": "assets/media/derivatives/placeholder-elan-square-01.svg",
+          "format": "svg",
+          "width": 512,
+          "height": 512,
+          "bytes": 397
+        }
+      ],
+      "width": 512,
+      "height": 512,
+      "bytes": 397,
+      "reviewStatus": "needs_review",
+      "approvedBy": null,
+      "approvedAt": null,
+      "reviewNotes": "Placeholder abstrait produit dans la story 22 ; validation de marque requise avant intégration."
+    },
+    {
+      "id": "illustration-placeholder-portrait-01",
+      "role": "screen_hero",
+      "family": "illustration",
+      "sourceType": "original",
+      "sourceUrlOrReference": "docs/visual-reference-board.md#d-illustrations-editoriales",
+      "author": "Nexelf / Codex",
+      "license": "project-authored",
+      "licenseProof": "internal:git-history",
+      "acquiredAt": "2026-08-20",
+      "allowedUses": ["expo-app"],
+      "attribution": null,
+      "expiresAt": null,
+      "containsIdentifiablePerson": false,
+      "consentReference": null,
+      "aiModel": null,
+      "aiPromptReference": null,
+      "generatedAt": null,
+      "focalPoint": { "x": 0.5, "y": 0.5 },
+      "ratios": ["4:5"],
+      "altFr": null,
+      "decorative": true,
+      "variants": [
+        {
+          "density": "1x",
+          "delivery": "bundled",
+          "pathOrKey": "assets/media/derivatives/placeholder-elan-portrait-01.svg",
+          "format": "svg",
+          "width": 640,
+          "height": 800,
+          "bytes": 397
+        }
+      ],
+      "width": 640,
+      "height": 800,
+      "bytes": 397,
+      "reviewStatus": "needs_review",
+      "approvedBy": null,
+      "approvedAt": null,
+      "reviewNotes": "Placeholder abstrait produit dans la story 22 ; validation de marque requise avant intégration."
+    }
+  ]
+}
